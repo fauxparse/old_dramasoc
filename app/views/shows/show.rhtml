@@ -11,6 +11,42 @@
   <% end -%>
 <% end -%>
 
+<% unless @show.roles.empty? -%>
+  <hr />
+
+  <h2>Cast and Crew</h2>
+
+  <% unless @show.production_roles.empty? -%>
+    <dl>
+      <% @show.production_roles.each do |role| -%>
+        <dt><%= role.job %></dt>
+        <dd><%= role.member ? role.member.to_s : "(unassigned)" %></dd>
+      <% end -%>
+    </dl>
+  <% end -%>
+
+  <% unless @show.acting_roles.empty? -%>
+    <h3>Cast</h3>
+    <dl>
+      <% @show.acting_roles.each do |role| -%>
+        <dt><%= role.character %></dt>
+        <dd><%= role.member ? role.member.to_s : "(not cast)" %></dd>
+      <% end -%>
+    </dl>
+  <% end -%>
+
+  <% unless @show.crew_roles.empty? -%>
+    <h3>Crew</h3>
+    <dl>
+      <% @show.crew_roles.each do |role| -%>
+        <dt><%= role.job %></dt>
+        <dd><%= role.member ? role.member.to_s : "(unassigned)" %></dd>
+      <% end -%>
+    </dl>
+  <% end -%>
+
+<% end -%>
+
 <hr />
 
 <ul>
