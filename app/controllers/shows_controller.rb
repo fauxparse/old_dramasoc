@@ -24,7 +24,7 @@ public
   end
 
   def new
-    @show = Show.new
+    @show = Show.new :year => Date.today.year
   end
 
   def create
