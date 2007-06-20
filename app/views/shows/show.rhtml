@@ -1,0 +1,19 @@
+<h1><cite><%= @show %></cite><%= " (#{@show.year})" unless @show.year.nil? %></h1>
+<%=bc @show.description %>
+
+<% if @show.bookings_open? -%>
+  <hr />
+  <h2>Book now for <cite><%= @show.name %></cite>!</h2>
+  <% form_for :booking, Booking.new, :url => show_new_booking_path(@show), :html => { :method => :get } do |form| -%>
+    <label for="booking_performance">Book for:</label>
+    <%= form.select :performance_id, @show.performances.collect { |p| [ p.strftime, p.id ] } %>
+    <%= submit_tag "Book" %>
+  <% end -%>
+<% end -%>
+
+<hr />
+
+<ul>
+  <li><%= link_to "Edit details", edit_show_path(@show), :class => "action edit-show" %></li>
+  <li><%= link_to "Show Bookings", show_bookings_path(@show), :class => "action show-bookings" %></li>
+</ul>

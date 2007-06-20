@@ -1,0 +1,5 @@
+<h1>Book now for <cite><%= @show.name %></cite></h1>
+<% form_for :booking, @booking, :url => show_bookings_path(@show), :html => { :method => :post } do |form| -%>
+  <%= render :partial => "form" %>
+  <%= submit_tag "Book tickets" %>
+<% end -%>

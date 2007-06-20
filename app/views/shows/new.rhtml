@@ -1,0 +1,6 @@
+<h1>New show</h1>
+
+<% form_for :show, @show, :url => shows_path, :html => { :method => :post } do |form| -%>
+  <%= render :partial => "form" %>
+  <%= submit_tag "Create" %>
+<% end -%>

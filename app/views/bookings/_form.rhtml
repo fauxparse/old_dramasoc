@@ -1,0 +1,12 @@
+<% fields_for :booking, @booking do |booking| -%>
+  <h2>Book now for <%= @show.name %>!</h2>
+  <%= error_messages_for "booking" %>
+  <ol class="form">
+    <li class="text"><label for="booking_name">Your name:</label><%= booking.text_field :name, :class => "text" %></li>
+    <li class="text"><label for="booking_phone">Your phone number:</label><%= booking.text_field :phone, :class => "text phone" %></li>
+    <li class="text"><label for="booking_phone">Your email address:</label><span class="field"><%= booking.text_field :email, :class => "text" %><br /><span class="field"><%= booking.check_box :notify_me %> Please contact me about upcoming shows and events</span></span></li>
+    <li class="select"><label for="booking_performance_id">Performance:</label><%= booking.select :performance_id, @show.performances.collect { |p| [ p.strftime, p.id ] } %>
+    <li class="text"><label for="booking_waged">Number of tickets:</label><span class="field"><%= booking.text_field :waged, :class => "text number" %> waged and <%= booking.text_field :unwaged, :class => "text number" %> unwaged</span></li>
+    <li class="textarea"><label for="booking_comments">Any other comments:</label><%= booking.text_area :comments, :rows => 5 %></li>
+  </ol>
+<% end -%>

@@ -1,0 +1,27 @@
+<h1>Online Bookings for <cite><%= @show %></cite><%= " (#{@show.year})" unless @show.year.nil? %></h1>
+<table>
+  <thead>
+    <tr><th>Date</th><th>Waged</th><th>Unwaged</th><th>Total</th><th>Income</th></tr>
+  </thead>
+  <tbody>
+    <% @show.performances.each do |p| -%>
+      <% pb = @bookings.select { |b| b.performance == p } %>
+      <tr>
+        <th><%= p.strftime "%A, %e %B" %></th>
+        <td><%= pb.collect(&:waged_tickets).sum %></td>
+        <td><%= pb.collect(&:unwaged_tickets).sum %></td>
+        <td><%= pb.collect(&:total_tickets).sum %></td>
+        <td><%= sprintf "$%.2f", pb.collect(&:total_price).sum %></td>
+      </tr>
+    <% end -%>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <td><%= @bookings.collect(&:waged_tickets).sum %></td>
+      <td><%= @bookings.collect(&:unwaged_tickets).sum %></td>
+      <td><%= @bookings.collect(&:total_tickets).sum %></td>
+      <td><%= sprintf "$%.2f", @bookings.collect(&:total_price).sum %></td>
+    </tr>
+  </tfoot>
+</table>

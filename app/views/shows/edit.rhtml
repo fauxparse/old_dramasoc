@@ -1,0 +1,6 @@
+<h1>Edit show</h1>
+
+<% form_for :show, @show, :url => show_path(@show), :html => { :method => :put } do |form| -%>
+  <%= render :partial => "form" %>
+  <%= submit_tag "Save" %>
+<% end -%>

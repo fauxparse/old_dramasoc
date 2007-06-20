@@ -1,0 +1,9 @@
+<% fields_for :show, @show do |show| -%>
+  <%= error_messages_for "show" %>
+
+  <ol class="form">
+    <li class="text required"><label for="show_name">Name:</label><%= show.text_field :name, :class => "text" %></li>
+    <li class="date"><label for="show_year">Date:</label><%= show.select :month, (1..12).collect { |m| [ Date::MONTHNAMES[m], m ] }, :include_blank => true %> <%= show.select :year, (1960..2038).collect { |y| [ y, y ] }, :include_blank => true %>
+    <li class="textarea"><label for="show_description">Description:</label><%= show.text_area "description", :rows => "15" %></li>
+  </ol>  
+<% end -%>
