@@ -6,9 +6,24 @@
      xml:lang="en" >
   <head>
     <title><%= @page_title || "Dramasoc: The University of Canterbury Drama Society" %></title>
+    <%= stylesheet_link_tag "application" %>
   </head>
-  <body>
-    <%= content_tag(:div, flash[:notice], :id => "flash") if flash.any? %>
-    <%= yield %>
+  <body<%= " class=\"#{@active_tab.to_s}\"" unless !@active_tab %>>
+    <div id="container">
+      <div id="header">
+        <h2 id="logo"><%= link_to "Dramasoc", "/dramasoc/home/" %></h2>
+      </div>
+      <div id="navigation">
+        <%= render :partial => 'shared/navigation' %>
+      </div>
+      <div id="body">
+        <div id="body-inner">
+          <%= content_tag(:div, flash[:notice], :id => "flash") if flash.any? %>
+          <%= yield %>
+          <div class="cleaner"></div>
+        </div>
+      </div>
+      <%= yield :weird_layout %>
+    </div>
   </body>
 </html>

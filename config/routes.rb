@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :shows, :collection => { :current => :get } do |show|
     show.resources :bookings, :name_prefix => "show_"
   end
+  map.resources :events
   
   map.connect 'dramasoc/:action', :controller => "dramasoc", :action => "home"
   map.connect '', :controller => "shows", :action => "current"

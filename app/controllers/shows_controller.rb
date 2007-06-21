@@ -1,7 +1,12 @@
 class ShowsController < ApplicationController
+  before_filter :set_active_tab
   before_filter :get_show, :only => [ :show, :edit, :update, :destroy ]
 
 protected
+  def set_active_tab
+    @active_tab = :shows
+  end
+
   def get_show
     @show = Show.find_by_permalink(params[:id]) or raise ActiveRecord::RecordNotFound
   end

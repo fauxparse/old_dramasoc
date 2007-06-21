@@ -1,0 +1,180 @@
+body {
+  background: white;
+  color: #444;
+  margin: 0px;
+  padding: 0px;
+}
+
+body, td, input, select, textarea {
+  font: 13px/1.6 "Lucida Grande", "Lucida Sans", Helvetica, sans-serif;  
+}
+
+#navigation, h1, h2 {
+  font-family: "Gill Sans Std", "Gill Sans MT", "Gill Sans", Helvetica, sans-serif;  
+}
+
+a, #body a {
+  color: #ec008c;
+  text-decoration: none;
+}
+
+a:hover, #body a:hover {
+  border-bottom: 1px dotted #ec008c;  
+}
+
+body.home {
+  background: #4c9cd0;
+  color: white; 
+}
+
+body.home a {
+  color: #f67fc5;
+}
+
+body.home a:hover {
+  border-bottom-color: #f67fc5;  
+}
+
+#container {
+    
+}
+
+#header {
+  background: #0072bc url(/images/header-background.png) repeat-x 0px 0px;
+  color: white;
+  height: 128px;
+  overflow: hidden;
+  position: relative;
+}
+
+#header #logo {
+  position: relative;
+  height: 128px;
+  margin: 0px;
+  padding: 0px;
+  background: url(/images/header-montage.jpg) no-repeat 0px 0px;
+}
+
+#header #logo a {
+  position: absolute;
+  left: 120px;
+  top: 32px;
+  width: 376px;
+  height: 88px;
+  text-decoration: none;  
+  margin: 0px;
+  padding: 0px;
+  background: url(/images/header-logo.png) no-repeat 0px 0px;
+  text-indent: -1000em;
+  overflow: hidden;
+  border: none;
+}
+
+#header a {
+  color: white;
+  line-height: normal;
+}
+
+#navigation {
+  background: black;
+  color: white;
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px 64px 0px 128px;
+  height: 1.8em;
+}
+
+#navigation #tabs {
+  margin: 0px;
+  padding: 0px;
+}
+
+#navigation .tab {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: inline;
+}
+
+#navigation .tab a {
+  border-bottom: 0.3em solid black;
+  padding: 0.5em 0px 0em;
+  margin-right: 2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #666;
+  line-height: 1em;
+  display: block;
+  float: left;
+}
+
+#navigation .tab.active a {
+  color: white;
+  border-bottom-color: white;  
+}
+
+#navigation .tab a:hover {
+  color: #ec008c;
+}
+
+#body {
+  background-color: white;
+  color: #444;
+}
+
+#homepage-panel {
+  background: url(/images/homepage-panel-background.png) repeat-x 0px 0px;
+  border-top: 1px solid white;
+}
+
+#body-inner,
+#homepage-panel-inner {
+  margin-left: 128px;
+  width: 648px;
+  padding-bottom: 32px;
+}
+
+.cleaner {
+  clear: both;
+  height: 0px;
+  overflow: hidden;  
+}
+
+h2 {
+  margin: 2ex 0px 0ex;
+  font-size: 200%;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 0.2em;  
+}
+
+h3 {
+  margin: 2ex 0px 0ex;  
+}
+
+p {
+  margin: 0px 0px 2ex;
+  padding: 0px;
+}
+
+#news-panel {}
+
+#latest-news {
+  float: left;
+  width: 424px;  
+}
+
+#coming-events {
+  float: right;
+  width: 200px;
+}
+
+#coming-events h2 {
+  font-size: 150%;
+  margin-top: 2.66ex;
+  padding-top: 0.66ex;
+}
+
+.event h3 {
+  margin: 0px;  
+}
