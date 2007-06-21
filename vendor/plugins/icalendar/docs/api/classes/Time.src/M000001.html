@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_ical (Time)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/icalendar/conversions.rb, line 111</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_ical</span>(<span class="ruby-identifier">utc</span> = <span class="ruby-keyword kw">false</span>)
+    <span class="ruby-identifier">s</span> = <span class="ruby-value str">&quot;&quot;</span>
+
+    <span class="ruby-comment cmt"># Double digit hour</span>
+    <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;0&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">hour</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span> 
+    <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">hour</span>.<span class="ruby-identifier">to_s</span>
+    
+    <span class="ruby-comment cmt"># Double digit minute</span>
+    <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;0&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">min</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span> 
+    <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_s</span>
+    
+    <span class="ruby-comment cmt"># Double digit second</span>
+    <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;0&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sec</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span> 
+    <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">to_s</span>
+
+    <span class="ruby-comment cmt"># UTC time gets a Z suffix</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">utc</span>
+      <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Z&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">s</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

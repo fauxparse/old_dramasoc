@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Icalendar::Calendar)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/icalendar/calendar.rb, line 19</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>()
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-value str">&quot;VCALENDAR&quot;</span>)
+
+      <span class="ruby-comment cmt"># Set some defaults</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">calscale</span> = <span class="ruby-value str">&quot;GREGORIAN&quot;</span>    <span class="ruby-comment cmt"># Who knows, but this is the only one in the spec.</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">prodid</span> = <span class="ruby-value str">&quot;iCalendar-Ruby&quot;</span> <span class="ruby-comment cmt"># Current product... Should be overwritten by apps that use the library</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">version</span> = <span class="ruby-value str">&quot;2.0&quot;</span> <span class="ruby-comment cmt"># Version of the specification</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

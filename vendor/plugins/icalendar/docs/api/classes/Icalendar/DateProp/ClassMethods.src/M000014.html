@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>date_property (Icalendar::DateProp::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/icalendar/helpers.rb, line 38</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">date_property</span>(<span class="ruby-identifier">dp</span>, <span class="ruby-identifier">alias_name</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">dp</span> = <span class="ruby-node">&quot;#{dp}&quot;</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">downcase</span>
+        <span class="ruby-identifier">getter</span> = <span class="ruby-identifier">dp</span>
+        <span class="ruby-identifier">setter</span> = <span class="ruby-node">&quot;#{dp}=&quot;</span>
+        <span class="ruby-identifier">query</span> = <span class="ruby-node">&quot;#{dp}?&quot;</span>
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">getter</span>
+          <span class="ruby-identifier">code</span> = <span class="ruby-value str">&quot;def \#{getter}(*a)\nif a.empty?\n@properties[\#{dp.upcase}]\nelse\nself.\#{dp} = a.first\nend\nend\n&quot;</span>
+
+          <span class="ruby-identifier">module_eval</span> <span class="ruby-identifier">code</span>
+        <span class="ruby-keyword kw">end</span>
+           
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">setter</span>
+          <span class="ruby-identifier">code</span> = <span class="ruby-value str">&quot;def \#{setter} a\n@properties[\#{dp.upcase}] = a\nend\n&quot;</span>
+
+          <span class="ruby-identifier">module_eval</span> <span class="ruby-identifier">code</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">query</span>
+          <span class="ruby-identifier">code</span> = <span class="ruby-value str">&quot;def \#{query}\n@properties.has_key?(\#{dp.upcase})\nend\n&quot;</span>
+
+          <span class="ruby-identifier">module_eval</span> <span class="ruby-identifier">code</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Define the getter</span>
+        <span class="ruby-identifier">getter</span> = <span class="ruby-node">&quot;get#{property.to_s.capitalize}&quot;</span>
+        <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">getter</span>.<span class="ruby-identifier">to_sym</span>) <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;inside getting...&quot;</span>
+          <span class="ruby-identifier">getDateProperty</span>(<span class="ruby-identifier">property</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">upcase</span>)  
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-comment cmt"># Define the setter</span>
+        <span class="ruby-identifier">setter</span> = <span class="ruby-node">&quot;set#{property.to_s.capitalize}&quot;</span>        
+        <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">setter</span>.<span class="ruby-identifier">to_sym</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">params</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">date</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-identifier">utc</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">1</span>]
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;inside setting...&quot;</span>
+          <span class="ruby-identifier">setDateProperty</span>(<span class="ruby-identifier">property</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">upcase</span>, <span class="ruby-identifier">date</span>, <span class="ruby-identifier">utc</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Create aliases if a name was specified</span>
+<span class="ruby-comment cmt">#         if not aliasName.nil?</span>
+<span class="ruby-comment cmt">#           gasym = &quot;get#{aliasName.to_s.capitalize}&quot;.to_sym </span>
+<span class="ruby-comment cmt">#           gsym = getter.to_sym</span>
+<span class="ruby-comment cmt">#           alias gasym gsym </span>
+          
+<span class="ruby-comment cmt">#           sasym = &quot;set#{aliasName.to_s.capitalize}&quot;.to_sym </span>
+<span class="ruby-comment cmt">#           ssym = setter.to_sym</span>
+<span class="ruby-comment cmt">#           alias sasym ssym </span>
+<span class="ruby-comment cmt">#        end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

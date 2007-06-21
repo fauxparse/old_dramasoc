@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>print_parameters (Icalendar::Component)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/icalendar/component.rb, line 157</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_parameters</span>(<span class="ruby-identifier">val</span>)
+      <span class="ruby-identifier">s</span> = <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">s</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:ical_params</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">ical_params</span>.<span class="ruby-identifier">nil?</span>
+
+      <span class="ruby-identifier">val</span>.<span class="ruby-identifier">ical_params</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;;#{key}&quot;</span>
+        <span class="ruby-identifier">val</span> = [ <span class="ruby-identifier">val</span> ] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+
+        <span class="ruby-comment cmt"># Possible parameter values</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;=&quot;</span>
+          <span class="ruby-identifier">sep</span> = <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># First entry comes after = sign, but then we need commas</span>
+          <span class="ruby-identifier">val</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pval</span><span class="ruby-operator">|</span> 
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pval</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:to_ical</span> 
+              <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sep</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pval</span>.<span class="ruby-identifier">to_ical</span>
+              <span class="ruby-identifier">sep</span> = <span class="ruby-value str">&quot;,&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">s</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

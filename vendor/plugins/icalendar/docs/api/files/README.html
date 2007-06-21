@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Thu Jul 20 21:24:55 CEST 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>iCalendar &#8212; Internet calendaring, Ruby style</h1>
+<p>
+This is a Ruby library for dealing with iCalendar files. Rather than
+explaining myself, here is the introduction from RFC-2445, which defines
+the format:
+</p>
+<p>
+The use of calendaring and scheduling has grown considerably in the last
+decade. Enterprise and inter-enterprise business has become dependent on
+rapid scheduling of events and actions using this information technology.
+However, the longer term growth of calendaring and scheduling, is currently
+limited by the lack of Internet standards for the message content types
+that are central to these knowledgeware applications. This memo is intended
+to progress the level of interoperability possible between dissimilar
+calendaring and scheduling applications. This memo defines a MIME content
+type for exchanging electronic calendaring and scheduling information. The
+Internet Calendaring and Scheduling Core <a
+href="../classes/Object.html">Object</a> Specification, or iCalendar,
+allows for the capture and exchange of information normally stored within a
+calendaring and scheduling application; such as a Personal Information
+Manager (PIM) or a Group Scheduling product.
+</p>
+<p>
+The iCalendar format is suitable as an exchange format between applications
+or systems. The format is defined in terms of a MIME content type. This
+will enable the object to be exchanged using several transports, including
+but not limited to SMTP, HTTP, a file system, desktop interactive protocols
+such as the use of a memory- based clipboard or drag/drop interactions,
+point-to-point asynchronous communication, wired-network transport, or some
+form of unwired transport such as infrared might also be used.
+</p>
+<p>
+Now for some examples:
+</p>
+<p>
+## Probably want to start with this
+</p>
+<pre>
+  require 'rubygems' # Unless you install from the tarball or zip.
+  require 'icalendar'
+  require 'date'
+
+  include Icalendar # Probably do this in your class to limit namespace overlap
+</pre>
+<p>
+## Creating calendars and events is easy.
+</p>
+<pre>
+  # Create a calendar with an event (standard method)
+  cal = Calendar.new
+  cal.event do
+    dtstart       Date.new(2005, 04, 29)
+    dtend         Date.new(2005, 04, 28)
+    summary     &quot;Meeting with the man.&quot;
+    description &quot;Have a long lunch meeting and decide nothing...&quot;
+    klass       &quot;PRIVATE&quot;
+  end
+</pre>
+<p>
+## Or you can make events like this
+</p>
+<pre>
+  event = Event.new
+  event.start = DateTime.civil(2006, 6, 23, 8, 30)
+  event.summary = &quot;A great event!&quot;
+  cal.add_event(event)
+
+  event2 = cal.event  # This automatically adds the event to the calendar
+  event2.start = DateTime.civil(2006, 6, 24, 8, 30)
+  event2.summary = &quot;Another great event!&quot;
+
+  # Now with support for property parameters
+  params = {&quot;ALTREP&quot; =&gt;['&quot;http://my.language.net&quot;'], &quot;LANGUAGE&quot; =&gt; [&quot;SPANISH&quot;]}
+
+  cal.event do
+    dtstart Date.new(2005, 04, 29)
+    dtend   Date.new(2005, 04, 28)
+    summary &quot;This is a summary with params.&quot;, params
+  end
+
+  # We can output the calendar as a string to write to a file,
+  # network port, database etc.
+  cal_string = cal.to_ical
+  puts cal_string
+</pre>
+<h2>Parsing iCalendars:</h2>
+<pre>
+  # Open a file or pass a string to the parser
+  cal_file = File.open(&quot;single_event.ics&quot;)
+
+  # Parser returns an array of calendars because a single file
+  # can have multiple calendars.
+  cals = Icalendar.parse(cal_file)
+  cal = cals.first
+
+  # Now you can access the cal object in just the same way I created it
+  event = cal.events.first
+
+  puts &quot;start date-time: &quot; + event.dtstart
+  puts &quot;summary: &quot; + event.summary
+</pre>
+<h2>Finders:</h2>
+<p>
+Often times in web apps and other interactive applications you&#8217;ll
+need to lookup items in a calendar to make changes or get details. Now you
+can find everything by the unique id automatically associated with all
+components.
+</p>
+<pre>
+  cal = Calendar.new
+  10.times { cal.event } # Create 10 events with only default data.
+  some_event = cal.events[5] # Grab it from the array of events
+
+  # Use the uid as the key in your app
+  key = some_event.uid
+
+  # so later you can find it.
+  same_event = cal.find_event(key)
+</pre>
+<h2>Examples:</h2>
+<p>
+Check the unit tests for examples of most things you&#8217;ll want to do,
+but please send me example code or let me know what&#8217;s missing.
+</p>
+<h2>Download</h2>
+<p>
+The latest release version of this library can be found at
+</p>
+<ul>
+<li><a
+href="http://rubyforge.org/projects/icalendar">rubyforge.org/projects/icalendar</a>/
+
+</li>
+</ul>
+<p>
+Documentation can be found at
+</p>
+<ul>
+<li><a href="http://icalendar.rubyforge.org">icalendar.rubyforge.org</a>/
+
+</li>
+</ul>
+<h2>Installation</h2>
+<p>
+It&#8217;s all about rubygems:
+</p>
+<p>
+$ sudo gem install icalendar
+</p>
+<h2>License</h2>
+<p>
+This library is released under the same license as Ruby itself.
+</p>
+<h2>Support &amp; Contributions</h2>
+<p>
+The iCalendar library homepage is <a
+href="http://icalendar.rubyforge.org">icalendar.rubyforge.org</a>/
+</p>
+<p>
+There is an icalendar-devel@rubyforge.org mailing list that can be used for
+asking questions, making comments or submitting patches.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

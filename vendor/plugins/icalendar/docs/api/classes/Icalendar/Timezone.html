@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Icalendar::Timezone</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Icalendar::Timezone</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/icalendar/component/timezone_rb.html">
+                lib/icalendar/component/timezone.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Component.html">
+                Component
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+A <a href="Timezone.html">Timezone</a> is unambiguously defined by the set
+of time measurement rules determined by the governing body for a given
+geographic area. These rules describe at a minimum the base offset from UTC
+for the time zone, often referred to as the <a
+href="Standard.html">Standard</a> <a href="../Time.html">Time</a> offset.
+Many locations adjust their <a href="Standard.html">Standard</a> <a
+href="../Time.html">Time</a> forward or backward by one hour, in order to
+accommodate seasonal changes in number of daylight hours, often referred to
+as <a href="Daylight.html">Daylight</a> Saving <a
+href="../Time.html">Time</a>. Some locations adjust their time by a
+fraction of an hour. <a href="Standard.html">Standard</a> <a
+href="../Time.html">Time</a> is also known as Winter <a
+href="../Time.html">Time</a>. <a href="Daylight.html">Daylight</a> Saving
+<a href="../Time.html">Time</a> is also known as Advanced <a
+href="../Time.html">Time</a>, Summer <a href="../Time.html">Time</a>, or
+Legal <a href="../Time.html">Time</a> in certain countries. The following
+table shows the changes in time zone rules in effect for New York City
+starting from 1967. Each line represents a description or rule for a
+particular observance.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000026">add_component</a>&nbsp;&nbsp;
+      <a href="#M000028">new</a>&nbsp;&nbsp;
+      <a href="#M000027">to_ical</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">comment</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc">
+Multi-properties
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">comment</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc">
+Multi-properties
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">comments</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc">
+Multi-properties
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">created</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">daylight</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">dtstart</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc">
+Single properties
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">last_modified</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">rdate</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">recurrence_date</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">recurrence_dates</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">recurrence_rule</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">recurrence_rules</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">rrule</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">sequence</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">standard</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">start</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc">
+Single properties
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">timestamp</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">timezone_id</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">timezone_name</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">timezone_offset_from</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">timezone_offset_to</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tzid</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tzname</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tzoffsetfrom</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tzoffsetto</td>
+          <td class="context-item-value">&nbsp;&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="Timezone.src/M000028.html" target="Code" class="method-signature"
+            onclick="popupCode('Timezone.src/M000028.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(name = &quot;VTIMEZONE&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="Timezone.src/M000026.html" target="Code" class="method-signature"
+            onclick="popupCode('Timezone.src/M000026.html');return false;">
+          <span class="method-name">add_component</span><span class="method-args">(component)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Define a custom add component method because standard and daylight are the
+only components that can occur just once with their parent.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="Timezone.src/M000027.html" target="Code" class="method-signature"
+            onclick="popupCode('Timezone.src/M000027.html');return false;">
+          <span class="method-name">to_ical</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Also need a custom <a href="Timezone.html#M000027">to_ical</a> because
+typically it iterates over an array of components.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
