@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
-  map.resources :session
+  map.resource :session
   map.login 'login', :controller => "session", :action => "new"
   map.logout 'login', :controller => "session", :action => "destroy"
 
