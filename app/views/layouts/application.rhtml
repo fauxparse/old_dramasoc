@@ -6,7 +6,8 @@
      xml:lang="en" >
   <head>
     <title><%= @page_title || "Dramasoc: The University of Canterbury Drama Society" %></title>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "application", "redbox" %>
+    <%= javascript_include_tag :defaults, "redbox" %>
   </head>
   <body<%= " class=\"#{@active_tab.to_s}\"" unless !@active_tab %>>
     <div id="container">
