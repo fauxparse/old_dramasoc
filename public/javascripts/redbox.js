@@ -26,8 +26,8 @@ var RedBox = {
 
   close: function()
   {
-    new Effect.Fade('RB_window', {duration: 0.4});
-    new Effect.Fade('RB_overlay', {duration: 0.4});
+    new Effect.Fade('RB_window', {duration: 0.4, queue: 'end'});
+    new Effect.Fade('RB_overlay', {duration: 0.4, queue: 'end'});
     this.showSelectBoxes();
   },
 
