@@ -3,6 +3,8 @@ class SessionController < ApplicationController
   skip_before_filter :login_required
 
   def new
+    session[:return_to] = params[:url]
+    render :layout => !request.xhr?
   end
   
   def create
@@ -12,7 +14,7 @@ class SessionController < ApplicationController
         self.current_user.remember_me
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
-      redirect_back_or_default('/')
+      redirect_back_or_default home_url
       flash[:notice] = "Logged in successfully"
     else
       render :action => 'new'
@@ -24,6 +26,6 @@ class SessionController < ApplicationController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default('/')
+    redirect_back_or_default home_url
   end
 end

@@ -12,7 +12,7 @@ module ActionView
             request.path = url
             controller = ActionController::Routing::Routes.recognize(request)
             if !controller.nil?
-              protected_actions = (controller.included_actions.select { |k, v| k.filter == :login_required }.first || []).last || []
+              protected_actions = (controller.included_actions.select { |k, v| k.filter == filter_name }.first || []).last || []
               do_fancy_link = protected_actions.include? request.path_parameters[:action].to_s
             end
           end
@@ -29,6 +29,10 @@ module ActionView
       end
 
       alias_method_chain :link_to, :sentience
+
+      def filter_name
+        :login_required
+      end
 
       def augment_link_options(name, options, html_options)
         html_options[:onclick] ||= "alert('You need to log in for that!'); return false;"

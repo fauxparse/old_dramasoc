@@ -19,14 +19,15 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   map.login 'login', :controller => "session", :action => "new"
-  map.logout 'login', :controller => "session", :action => "destroy"
+  map.logout 'logout', :controller => "session", :action => "destroy"
 
   map.resources :shows, :collection => { :current => :get } do |show|
     show.resources :bookings, :name_prefix => "show_"
   end
   map.resources :events
   
-  map.connect 'dramasoc/:action', :controller => "dramasoc", :action => "home"
+  map.dramasoc 'dramasoc/:action', :controller => "dramasoc", :action => "home"
+  map.home 'dramasoc', :controller => "dramasoc", :action => "home"
   map.connect '', :controller => "shows", :action => "current"
 
   # Install the default route as the lowest priority.

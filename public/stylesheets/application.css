@@ -36,7 +36,14 @@ body.home a:hover {
 }
 
 #container {
-    
+  min-width: 880px;
+}
+
+#flash {
+  margin-top: 16px;
+  padding: 8px;
+  background: #ffc;
+  border: 1px solid #cc9;  
 }
 
 #header {
@@ -120,6 +127,14 @@ body.home a:hover {
 #body {
   background-color: white;
   color: #444;
+}
+
+body.home #body {
+  padding-top: 16px;  
+}
+
+body.home #body #flash {
+  margin-top: 0px;  
 }
 
 #homepage-panel {
