@@ -1,3 +1,6 @@
+module SentientLinks
+end
+
 module ActionView
   module Helpers
     module UrlHelper
