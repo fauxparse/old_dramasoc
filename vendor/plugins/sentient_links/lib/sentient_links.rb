@@ -22,9 +22,9 @@ module ActionView
         rescue ActionController::RoutingError
           do_fancy_link = false
         ensure
-          #if do_fancy_link and !logged_in?
+          if do_fancy_link and !logged_in?
             name, options, html_options = augment_link_options name, options, html_options
-          #end
+          end
         end
         link_to_without_sentience name, options, html_options, *parameters_for_method_reference
       end
