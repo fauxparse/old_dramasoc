@@ -19,10 +19,10 @@ protected
 
     rescue AccessDenied
       flash[:notice] = "You do not have access to that area."
-      redirect_to '/'
+      redirect_to home_url
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Sorry, can't find that record."
-      redirect_to '/'
+      redirect_to home_url
     end
   end
 end

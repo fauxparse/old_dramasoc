@@ -58,3 +58,9 @@ end
 # Mime::Type.register "application/x-mobile", :mobile
 
 # Include your application configuration below
+
+class Time
+  def to_date_time
+    DateTime.strptime(to_s, '%a %b %d %H:%M:%S %Z %Y')
+  end
+end

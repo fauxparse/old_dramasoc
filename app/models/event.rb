@@ -12,9 +12,3 @@ class Event < ActiveRecord::Base
     e
   end
 end
-
-class Time
-  def to_date_time
-    DateTime.strptime(to_s, '%a %b %d %H:%M:%S %Z %Y')
-  end
-end
