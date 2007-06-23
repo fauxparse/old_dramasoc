@@ -23,8 +23,6 @@ module ActionView
           do_fancy_link = false
         ensure
           if do_fancy_link and !logged_in?
-            html_options[:onclick] ||= "alert('You need to log in for that!'); return false;"
-            html_options[:class] = [ html_options[:class], "login-required" ].compact.join ' '
             name, options, html_options = augment_link_options name, options, html_options
           end
         end

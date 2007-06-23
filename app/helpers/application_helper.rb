@@ -9,10 +9,11 @@ end
 module ActionView
   module Helpers
     module UrlHelper
-      def augment_link_options(name, options, html_options)
-        html_options[:onclick] = "popup_login_redbox(this); return false;"
-        [ name, options, html_options ]
+      def link_to_with_sentience(name, options = {}, html_options = nil, *parameters_for_method_reference)
+        link_to_without_sentience name.upcase, options, html_options, *parameters_for_method_reference
       end
+
+      alias_method_chain :link_to, :sentience
     end
   end
 end
