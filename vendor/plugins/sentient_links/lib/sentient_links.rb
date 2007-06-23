@@ -5,11 +5,6 @@ module ActionView
   module Helpers
     module UrlHelper
       def link_to_with_sentience(name, options = {}, html_options = nil, *parameters_for_method_reference)
-        name, options, html_options = augment_link_options name, options, html_options
-        link_to_without_sentience name, options, html_options, *parameters_for_method_reference
-      end
-      
-      def old_link_to_with_sentience(name, options = {}, html_options = nil, *parameters_for_method_reference)
         url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
         do_fancy_link = false
 
@@ -27,7 +22,9 @@ module ActionView
         rescue ActionController::RoutingError
           do_fancy_link = false
         ensure
-          name, options, html_options = augment_link_options name, options, html_options
+          #if do_fancy_link and !logged_in?
+            name, options, html_options = augment_link_options name, options, html_options
+          #end
         end
         link_to_without_sentience name, options, html_options, *parameters_for_method_reference
       end

@@ -10,6 +10,8 @@ module ActionView
   module Helpers
     module UrlHelper
       def augment_link_options(name, options, html_options)
+        html_options ||= {}
+        html_options[:class] = [ html_options[:class], "login-required" ].compact.join ' '
         html_options[:onclick] = "popup_login_redbox(this); return false;"
         [ name, options, html_options ]
       end
