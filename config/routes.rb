@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => "session", :action => "destroy"
 
   map.resources :shows, :collection => { :current => :get } do |show|
+    show.resources :performances, :name_prefix => "show_"
     show.resources :bookings, :name_prefix => "show_"
   end
   map.resources :events

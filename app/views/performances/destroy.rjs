@@ -1,0 +1,1 @@
+page.visual_effect :switch_off, dom_id(@performance)

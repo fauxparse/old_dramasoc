@@ -1,0 +1,6 @@
+if @performance.valid?
+  page.insert_html :bottom, "performances", :partial => "shows/performance", :object => @performance
+  page.visual_effect :highlight, dom_id(@performance)
+else
+  page.alert "Invalid date or time. Please try again."
+end

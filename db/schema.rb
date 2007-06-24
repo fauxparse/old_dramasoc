@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 10) do
 
   create_table "bookings", :force => true do |t|
     t.column "performance_id", :integer
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(:version => 8) do
   end
 
   create_table "shows", :force => true do |t|
-    t.column "name",          :string,                                              :default => "", :null => false
-    t.column "permalink",     :string,                                              :default => "", :null => false
+    t.column "name",          :string,                                              :default => "",    :null => false
+    t.column "permalink",     :string,                                              :default => "",    :null => false
     t.column "year",          :integer
     t.column "month",         :integer
     t.column "description",   :text
@@ -66,7 +66,13 @@ ActiveRecord::Schema.define(:version => 8) do
     t.column "updated_at",    :datetime
     t.column "waged_price",   :integer,  :limit => 2, :precision => 2, :scale => 0
     t.column "unwaged_price", :integer,  :limit => 2, :precision => 2, :scale => 0
+    t.column "venue_id",      :integer
+    t.column "author",        :string
+    t.column "bookings_open", :boolean,                                             :default => false
+    t.column "booking_email", :string
   end
+
+  add_index "shows", ["venue_id"], :name => "fk_venue_id"
 
   create_table "venues", :force => true do |t|
     t.column "name",        :string

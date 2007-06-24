@@ -193,3 +193,141 @@ p {
 .event h3 {
   margin: 0px;  
 }
+
+.show-title {
+  margin: 0px 0px 16px;
+  color: #999;
+}
+
+.show-title h1 {
+  font-size: 300%;
+  font-weight: normal;
+  color: #0072bc;
+  margin: 2ex 0px 0px;
+  line-height: normal;
+}
+
+#columns {}
+
+#columns #main {
+  float: left;
+  width: 100%;
+  margin-right: -224px;
+}
+
+#columns #main-inner {
+  margin-right: 212px;
+  padding-right: 11px;
+  border-right: 1px dotted #ccc;
+  padding-bottom: 16px;
+}
+
+#columns #sidebar {
+  float: right;
+  width: 200px;
+}
+
+#columns #sidebar-inner {
+}
+
+#sidebar h2 {
+  font-size: 125%;
+  margin: 0px 0px 1ex;
+}
+
+#sidebar .box {
+  margin: 0px 0px 8px;  
+}
+
+.fieldset-tabs {
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 1px solid #999;
+  height: 2em;
+}
+
+.fieldset-tabs li {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+#body .fieldset-tabs a {
+  display: block;
+  float: left;
+  margin-right: 8px;
+  line-height: 1em;
+  padding: 0.5em 1em;
+  color: #999;
+  border: 1px solid #999;
+  background: #eee;
+}
+
+#body .fieldset-tabs .active a {
+  color: #444;
+  border-bottom-color: white;
+  background: white; 
+}
+
+fieldset.tabbed {
+  clear: left;
+  border: 1px solid #999;
+  border-top: none;
+  margin: 0px 0px 2ex;
+  padding: 16px;
+}
+
+ol.form {
+  margin: 0px 0px 2ex;
+  padding: 0px;
+  border-bottom: 1px dotted #ccc;  
+}
+
+ol.form li {
+  display: block;
+  list-style: none;
+  margin: 0px;
+  padding: 1ex 0px;
+  border-top: 1px dotted #ccc;
+}
+
+ol.form li label {
+  display: block;
+  width: 144px;
+  height: 1em;
+  margin: 0px;
+  padding: 0px;
+}
+
+ol.form li .field,
+ol.form li input.text,
+ol.form li select,
+ol.form li textarea,
+ol.form li ul.performances {
+  display: block;
+  margin: -1em 0px 0px 160px;
+  width: 440px;  
+}
+
+ol.form li .field.subsequent {
+  margin-top: 0px;
+}
+
+ul.performances {
+  padding: 0px;
+}
+
+ul.performances li {
+  padding: 0px;
+  border: none;
+}
+
+ol.form li .field .field,
+ol.form li .field input.text,
+ol.form li .field select,
+ol.form li .field textarea {
+  display: inline;
+  margin: 0px;
+  width: auto;
+}

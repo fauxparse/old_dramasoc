@@ -4,6 +4,22 @@ module ApplicationHelper
   def bc(text)
     BlueCloth.new(text || "").to_html
   end
+  
+  def tabbed_fieldset(name, options = {}, &block)
+    html_options = options.stringify_keys
+    html_options["id"] ||= "fields_#{name}"
+    html_options["class"] ||= "tabbed"
+    html_options["style"] = ('display: none; ' + (html_options["style"] || "")) unless @default_tab.to_s == name.to_s
+    
+    if block_given?
+      content = capture(&block)
+      concat(tag(:fieldset, html_options, true), block.binding)
+      concat(content, block.binding)
+      concat("</fieldset>", block.binding)
+    else
+      tag(:fieldset, html_options, true)
+    end
+  end
 end
 
 module ActionView

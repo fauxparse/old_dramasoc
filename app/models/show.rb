@@ -12,8 +12,10 @@ class Show < ActiveRecord::Base
   has_many :members, :through => :roles, :uniq => true
   has_many :performances, :order => "time ASC"
   has_many :bookings, :through => :performances
+  belongs_to :venue
   
   validates_presence_of :name
+  validates_presence_of :year
   
   def <=>(other_show)
     date <=> other_show.date
@@ -32,7 +34,24 @@ class Show < ActiveRecord::Base
   end
   
   def bookings_open?
-    !performances.empty? and performances.last.date >= Date.today
+    bookings_open and !performances.empty? and performances.last.date >= Date.today
+  end
+  
+  def performance_dates
+    performances.collect(&:date).sort
+  end
+  
+  def performance_dates_as_string
+    first, last = performance_dates.first, performance_dates.last
+    if first == last
+      first.strftime('%e %B, %Y')
+    elsif first.month == last.month
+      first.strftime('%e') + ' &ndash; ' + last.strftime('%e %B, %Y')
+    elsif first.year == last.year
+      first.strftime('%e %B') + ' &ndash; ' + last.strftime('%e %B, %Y')
+    else
+      first.strftime('%e %B, %Y') + ' &ndash; ' + last.strftime('%e %B, %Y')
+    end
   end
   
   def next_performance

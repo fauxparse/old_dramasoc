@@ -1,7 +1,7 @@
 class ShowsController < ApplicationController
   before_filter :set_active_tab
   before_filter :login_required, :only => [ :edit ]
-  before_filter :get_show, :only => [ :show, :edit, :update, :destroy ]
+  before_filter :get_show, :only => [ :edit, :update, :destroy ]
 
 protected
   def set_active_tab
@@ -18,6 +18,7 @@ public
   end
 
   def show
+    @show = Show.find_by_permalink(params[:id], :include => [ :performances, :venue, { :roles => :member } ]) or raise ActiveRecord::RecordNotFound
   end
 
   def current
