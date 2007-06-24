@@ -27,6 +27,6 @@
       <%= yield :weird_layout %>
     </div>
     <div id="hidden_redbox_content" style="display: none;"></div>
-    <%= "*** #{request.params['SERVER_NAME']} ***" %>
+    <%= content_tag :pre, "*** #{request.env.inspect} ***" %>
   </body>
 </html>
