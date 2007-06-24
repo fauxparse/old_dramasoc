@@ -8,7 +8,6 @@
     <title><%= @page_title || "Dramasoc: The University of Canterbury Drama Society" %></title>
     <%= stylesheet_link_tag "application", "redbox" %>
     <%= javascript_include_tag :defaults, "redbox" %>
-    <%= javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{Mapping.api_key(request.params['SERVER_NAME'])}" %>
   </head>
   <body<%= " class=\"#{@active_tab.to_s}\"" unless !@active_tab %>>
     <div id="container">
@@ -28,5 +27,6 @@
       <%= yield :weird_layout %>
     </div>
     <div id="hidden_redbox_content" style="display: none;"></div>
+    <%= request.params['SERVER_NAME'] %>
   </body>
 </html>

@@ -22,6 +22,10 @@ module ApplicationHelper
       tag(:fieldset, html_options, true)
     end
   end
+  
+  def google_maps_javascript_link
+    javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{Mapping.api_key(request.params['SERVER_NAME'])}"
+  end
 end
 
 module ActionView
