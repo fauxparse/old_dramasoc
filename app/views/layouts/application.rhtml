@@ -27,6 +27,6 @@
       <%= yield :weird_layout %>
     </div>
     <div id="hidden_redbox_content" style="display: none;"></div>
-    <%= request.params['SERVER_NAME'] %>
+    <%= "*** #{request.params['SERVER_NAME']} ***" %>
   </body>
 </html>

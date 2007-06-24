@@ -17,6 +17,7 @@ module Mapping
   end
   
   def api_key(host = 'localhost')
+    host = 'localhost' if host.blank?
     api_keys[@@engine][host]
   end
 end
