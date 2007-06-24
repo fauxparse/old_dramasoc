@@ -1,5 +1,5 @@
-<% @default_tab ||= :basic %>
-<% tabs = [ [ :basic, "Basic Information" ], [ :bookings, "Bookings" ] ] -%>
+<% @default_tab ||= :venue %>
+<% tabs = [ [ :basic, "Basic Information" ], [ :bookings, "Bookings" ], [ :venue, "Venue" ] ] -%>
 
 <%= error_messages_for "show" %>
 
@@ -27,8 +27,13 @@
     <p><%= show.check_box :bookings_open, :autocomplete => "off" %> Tick to enable online bookings for this show</p>
     <ol class="form">
       <li class="text"><label for="show_booking_email">Booking Email:</label><%= show.text_field :booking_email, :class => "text" %></li>
+      <li class="text">
+        <label for="show_waged_price">Ticket Prices:</label>
+        <span class="field">$<%= show.text_field :waged_price, :class => "text price" %> waged</span>
+        <span class="field subsequent">$<%= show.text_field :unwaged_price, :class => "text price" %> unwaged</span>
+      </li>
       <li class="list">
-        <label>Performances</label>
+        <label>Performances:</label>
         <ul class="performances" id="performances">
           <%= render :partial => "performance", :collection => @show.performances %>
         </ul>
@@ -48,8 +53,14 @@
 <% end -%>
 
 <% tabbed_fieldset :venue do -%>
-  <ul class="performances">
-    <%= render :partial => "performance", :collection => @show.performances %>
-  </ul>
+  <% fields_for :show, @show do |show| -%>
+    <ol class="form">
+      <li class="select">
+        <label for="show_venue_id">Performance Venue:</label>
+        <span class="field" id="venue_selector"><%= show.select :venue_id, Venue.find(:all).collect { |v| [ v.name, v.id ] }, :include_blank => true %></span>
+        <span class="field subsequent"><%= link_to_remote_redbox "Add new venue", :url => new_venue_path, :method => :get %></span>
+      </li>
+    </ol>
+  <% end -%>
 <% end -%>
 

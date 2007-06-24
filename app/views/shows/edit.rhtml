@@ -2,5 +2,5 @@
 
 <% form_for :show, @show, :url => show_path(@show), :html => { :method => :put } do |form| -%>
   <%= render :partial => "form" %>
-  <%= submit_tag "Save" %>
+  <%= submit_tag "Save", :class => "button" %>
 <% end -%>

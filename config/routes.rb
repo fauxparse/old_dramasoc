@@ -27,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :events
   map.resources :bookings
+  map.resources :venues
   
   map.dramasoc 'dramasoc/:action', :controller => "dramasoc", :action => "home"
   map.home 'dramasoc', :controller => "dramasoc", :action => "home"

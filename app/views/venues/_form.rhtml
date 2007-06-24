@@ -1,0 +1,13 @@
+<div id="venue_columns">
+  <% fields_for :venue, @venue do |venue| %>
+    <ol class="form">
+      <li class="text"><label for="venue_name">Name:</label><%= venue.text_field :name, :class => "text" %></li>
+      <li class="textarea"><label for="venue_address">Address:</label><%= venue.text_area :address, :class => "text", :rows => 3 %></li>
+    </ol>
+  <% end -%>
+  
+  <div id="map">
+  </div>
+  <%= map 'map', @venue, :editable => :true %>
+</div>
+

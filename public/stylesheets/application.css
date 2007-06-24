@@ -311,7 +311,7 @@ ol.form li ul.performances {
 }
 
 ol.form li .field.subsequent {
-  margin-top: 0px;
+  margin-top: 0.5ex;
 }
 
 ul.performances {
@@ -331,3 +331,39 @@ ol.form li .field textarea {
   margin: 0px;
   width: auto;
 }
+
+#body ol.form li input.price {
+  width: 4em;  
+}
+
+#venue_columns {
+  width: 300px;
+  padding-left: 300px;
+  height: 302px;
+  position: relative;
+}
+
+#venue_columns ol.form {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 280px;  
+}
+
+#venue_columns #map {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #ccc;
+  background: #eee;
+}
+
+#venue_columns label {
+  height: auto;  
+}
+
+#venue_columns ol.form li input.text,
+#venue_columns ol.form li textarea {
+  margin: 0px;
+  width: 100%;  
+}
+

@@ -10,12 +10,16 @@ class VenuesController < ApplicationController
   end
 
   def new
+    @venue = Venue.new
+    render :layout => !request.xhr?
   end
 
   def create
   end
 
   def edit
+    @venue = Venue.find(params[:id]) or raise ActiveRecord::RecordNotFound
+    render :layout => !request.xhr?
   end
 
   def update
