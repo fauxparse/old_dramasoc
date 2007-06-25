@@ -1,4 +1,3 @@
-<%= google_maps_javascript_link %>
 <% @default_tab ||= :venue %>
 <% tabs = [ [ :basic, "Basic Information" ], [ :bookings, "Bookings" ], [ :venue, "Venue" ] ] -%>
 
@@ -59,7 +58,6 @@
       <li class="select">
         <label for="show_venue_id">Performance Venue:</label>
         <span class="field" id="venue_selector"><%= show.select :venue_id, Venue.find(:all).collect { |v| [ v.name, v.id ] }, :include_blank => true %></span>
-        <span class="field subsequent"><%= link_to_remote_redbox "Add new venue", :url => new_venue_path, :method => :get %></span>
       </li>
     </ol>
   <% end -%>

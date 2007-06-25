@@ -1,7 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 
-include Mapping
-
 module ApplicationHelper
   def bc(text)
     BlueCloth.new(text || "").to_html
@@ -21,10 +19,6 @@ module ApplicationHelper
     else
       tag(:fieldset, html_options, true)
     end
-  end
-  
-  def google_maps_javascript_link
-    "<script type=\"text/javascript\" src=\"http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{Mapping.api_key(request.env['SERVER_NAME'])}\"></script>"
   end
 end
 
