@@ -20,6 +20,22 @@ module ApplicationHelper
       tag(:fieldset, html_options, true)
     end
   end
+  
+  def google_map(name = "map", venues = [], options = {})
+    map = GMap.new(name)
+    map.control_init(options[:controls] || { :large_map => true, :map_type => true })
+    map.center_zoom_init(venues.first.coordinates, 13) unless venues.empty?
+    venues.select(&:has_coordinates?).each do |venue|
+      marker = GMarker.new(venue.coordinates, :title => venue.name, :info_window => bc(venue.address), :draggable => !options[:marker_dragged].nil?, :name => venue.id.to_s)
+      map.overlay_global_init(marker, "marker_#{venue.id}")
+      map.event_global_init(marker, 'dragend', "function() { #{options[:marker_dragged]}(marker_#{venue.id}) }") unless options[:marker_dragged].nil?
+      map.event_global_init(marker, 'click', "function() { #{options[:marker_clicked]}(marker_#{venue.id}) }") unless options[:marker_clicked].nil?
+    end
+    
+    map.event_init(map, 'click', "function(marker, point) { if (point) { #{options[:point_clicked]} } }") if options[:point_clicked]
+
+    map
+  end
 end
 
 module ActionView

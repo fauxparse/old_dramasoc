@@ -32,3 +32,14 @@ function activate_tab(tab_name) {
     }
   });
 }
+
+function marker_clicked(marker) {
+  id = marker.name;
+  b = $('show_venue_id');
+  for (i = 0; i < b.options.length; i++) {
+    if (b.options[i].value == id) {
+      b.selectedIndex = id;
+      break;
+    }
+  }
+}

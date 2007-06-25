@@ -64,3 +64,7 @@ class Time
     DateTime.strptime(to_s, '%a %b %d %H:%M:%S %Z %Y')
   end
 end
+
+# cool AR logging hack
+require 'ar_extensions'
+

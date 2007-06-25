@@ -1,6 +1,6 @@
 <li class="performance" id="<%= dom_id(performance) %>">
   <%= performance.time.strftime "%A, %e %B, %Y at %l:%M" %>
   <% if logged_in? -%>
-    <%= link_to_remote "Delete", :url => show_performance_path(performance.show, performance), :method => :delete, :confirm => "Are you sure?" %>
+    <%= link_to_remote "Delete", :url => show_performance_path(@show || performance.show, performance), :method => :delete, :confirm => "Are you sure?" %>
   <% end -%>
 </li>
