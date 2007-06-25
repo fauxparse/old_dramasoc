@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   skip_before_filter :login_required
 
   def new
-    session[:return_to] = params[:url]
+    session[:return_to] = params[:url] if params[:url]
     render :layout => !request.xhr?
   end
   
