@@ -1,0 +1,4 @@
+<div class="venue-info">
+  <%= content_tag :h3, venue.name %>
+  <%= content_tag :address, (venue.address || "").gsub("\n", "<br />") %>
+</div>

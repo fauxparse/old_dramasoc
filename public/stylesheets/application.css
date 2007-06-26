@@ -346,3 +346,15 @@ textarea:focus {
   border: 1px solid #ccc;  
 }
 
+.venue-info h3 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 125%;
+}
+
+.venue-info address {
+  display: block;
+  font-style: normal;
+  color: #999;
+}
+

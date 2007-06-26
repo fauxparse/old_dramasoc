@@ -35,7 +35,7 @@ module ApplicationHelper
   end
   
   def init_marker(map, venue, options)
-    marker = GMarker.new(venue.coordinates, :title => venue.name, :info_window => bc(venue.address), :draggable => !options[:marker_dragged].nil?, :name => venue.id.to_s)
+    marker = GMarker.new(venue.coordinates, :title => venue.name, :info_window => render(:partial => "venues/info_window", :locals => { :venue => venue }), :draggable => !options[:marker_dragged].nil?, :name => venue.id.to_s)
     map.overlay_global_init(marker, "markers[#{venue.id}]")
     map.event_global_init(marker, 'dragend', "function() { #{options[:marker_dragged]}(markers[#{venue.id}]) }") unless options[:marker_dragged].nil?
     map.event_global_init(marker, 'click', "function() { #{options[:marker_clicked]}(markers[#{venue.id}]) }") unless options[:marker_clicked].nil?

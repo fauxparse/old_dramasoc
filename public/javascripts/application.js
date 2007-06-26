@@ -47,7 +47,8 @@ function marker_clicked(marker) {
 }
 
 function marker_dragged(marker) {
-point = marker.getPoint();
+  marker_clicked(marker);
+  point = marker.getPoint();
   new Ajax.Updater('hidden_redbox_content', '/venues/' + marker.name + '.js', {
     method:'put',
     asynchronous:true,
