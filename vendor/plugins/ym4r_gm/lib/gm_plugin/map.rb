@@ -198,10 +198,11 @@ module Ym4r
 
       #Globally declare a MappingObject with variable name "name". Option <tt>:local_construction</tt> should be passed if the construction has to be done inside the onload callback method (for exsample if it depends on the GMap to be initialized)
       def declare_global_init(variable,name, options = {})
+        v = (name.include?("[") ? "" : "var ")
         unless options[:local_construction]
-          @global_init << "var #{variable.assign_to(name)}"
+          @global_init << "#{v}#{variable.assign_to(name)}"
         else
-          @global_init << "var #{name};"
+          @global_init << "#{v}#{name};"
           @init << variable.assign_to(name)
         end
       end

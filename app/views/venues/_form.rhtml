@@ -1,0 +1,8 @@
+<% fields_for :venue, @venue do |venue| -%>
+  <ol class="form">
+    <li class="text"><label for="venue_name">Name:</label><%= venue.text_field :name, :autocomplete => "off", :class => "text" %></li>
+    <li class="text-area"><label for="venue_address">Address:</label><%= venue.text_area :address, :rows => 3, :autocomplete => "off", :class => "text" %></li>
+  </ol>
+  <%= venue.hidden_field :latitude %>
+  <%= venue.hidden_field :longitude %>
+<% end -%>

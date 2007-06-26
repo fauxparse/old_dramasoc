@@ -332,6 +332,11 @@ ol.form li .field textarea {
   width: auto;
 }
 
+input.text:focus,
+textarea:focus {
+	background: #ffc;
+}
+
 #body ol.form li input.price {
   width: 4em;  
 }

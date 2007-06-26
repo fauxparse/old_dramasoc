@@ -1,2 +1,6 @@
-<h1>Venues#new</h1>
-<p>Find me in app/views/venues/new.rhtml</p>
+<h2>New Venue</h2>
+<% form_remote_tag :url => venues_path, :method => :post do -%>
+  <%= render :partial => "form" %>
+  <%= submit_tag "Save" %>
+  <p><%= link_to_close_redbox "Cancel" %></p>
+<% end -%>

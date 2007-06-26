@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  session_times_out_in 1.year
   include AuthenticatedSystem
 
   class AccessDenied < StandardError; end

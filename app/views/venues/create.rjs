@@ -1,0 +1,14 @@
+if @venue.valid?
+  page.call "RedBox.close"
+  map = Variable.new("map")
+  marker = GMarker.new(@venue.coordinates, :title => @venue.name, :info_window => bc(@venue.address), :draggable => true, :name => @venue.id.to_s)
+  page << "markers[#{@venue.id}] = new GMarker(new GLatLng(#{@venue.coordinates.first}, #{@venue.coordinates.last}),{name:'#{@venue.id}', title:'#{@venue.name}', draggable:true });"
+  page << "addInfoWindowToMarker(markers[#{@venue.id}], \"#{bc(@venue.address)}\")";
+  page << "map.addOverlay(markers[#{@venue.id}])";
+  #page << "GEvent.addListener(markers[#{@venue.id}], 'dragend', function() { marker_dragged(markers[#{@venue.id}]) });"
+  #page << "GEvent.addListener(markers[#{@venue.id}], 'click', function() { marker_clicked(markers[#{@venue.id}]) });"
+  
+  page.replace_html "venue_selector", :partial => "venues/venue_selector", :locals => { :selected => @venue.id }
+else
+  render :partial => "form"
+end

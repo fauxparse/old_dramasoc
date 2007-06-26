@@ -57,8 +57,9 @@
     <ol class="form">
       <li class="select">
         <label for="show_venue_id">Performance Venue:</label>
-        <span class="field" id="venue_selector"><%= show.select :venue_id, Venue.find(:all).collect { |v| [ v.name, v.id ] }, :include_blank => true, :autocomplete => "off" %></span>
-        <%= observe_field "show_venue_id", :function => "if (value != '') { map.panTo(eval('marker_' + value).getPoint()); }" %>
+        <span class="field" id="venue_selector">
+          <%= render :partial => "venues/venue_selector", :locals => { :selected => @show.venue_id } %>
+        </span>
       </li>
     </ol>
     <div id="venue_map"></div>
@@ -67,7 +68,8 @@
 
 <% content_for :header do -%>
   <%= GMap.header :host => request.env['SERVER_NAME'] %>
-  <%= google_map('venue_map', Venue.find(:all), :marker_clicked => "marker_clicked", :marker_dragged => "marker_dragged").to_html %>
+  <%= javascript_tag "var markers = new Array();" %>
+  <%= google_map('venue_map', Venue.find(:all), :marker_clicked => "marker_clicked", :marker_dragged => "marker_dragged", :point_clicked => "point_clicked").to_html %>
   <%= javascript_tag "window.onunload = addCodeToFunction(window.onload,function() { GUnload(); });" %>
 <% end -%>
 
