@@ -53,7 +53,7 @@ public
   def update
     if @booking.update_attributes params[:booking]
       flash[:notice] = "Booking successfully updated"
-      # TODO: Redirect to bookings for this performance
+      # TODO: Redirect to bookings for this performance instead of for the show
       redirect_to show_bookings_path(@show)
     else
       render :action => "edit"
