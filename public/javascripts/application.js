@@ -40,7 +40,7 @@ function marker_clicked(marker) {
   b = $('show_venue_id');
   for (i = 0; i < b.options.length; i++) {
     if (b.options[i].value == id) {
-      b.selectedIndex = id;
+      b.selectedIndex = i;
       break;
     }
   }
