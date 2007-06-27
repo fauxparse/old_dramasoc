@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
 
+  before_filter :login_required, :only => [ :index, :edit, :update, :destroy ]
   before_filter :get_show, :except => [ :show ]
   before_filter :get_booking, :only => [ :show, :edit, :update, :destroy ]
 

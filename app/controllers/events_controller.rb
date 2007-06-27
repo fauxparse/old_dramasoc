@@ -2,6 +2,8 @@ require 'icalendar'
 
 class EventsController < ApplicationController
 
+  before_filter :login_required, :only => [ :new, :create, :edit, :update, :destroy ]
+
   def index
     @events = Event.find :all, :order => "events.starts_at DESC"
     respond_to do |wants|

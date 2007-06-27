@@ -1,4 +1,5 @@
 class PerformancesController < ApplicationController
+  before_filter :login_required, :only => [ :new, :create, :edit, :update, :destroy ]
   before_filter :get_show
 
 protected

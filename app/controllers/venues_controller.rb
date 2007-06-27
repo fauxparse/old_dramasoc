@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  before_filter :login_required, :only => [ :new, :create, :edit, :update, :destroy ]
   before_filter :get_venue, :only => [ :show, :edit, :update, :destroy ]
 
 protected

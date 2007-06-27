@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
   before_filter :set_active_tab
-  before_filter :login_required, :only => [ :edit ]
+  before_filter :login_required, :only => [ :new, :create, :edit, :update, :destroy ]
   before_filter :get_show, :only => [ :edit, :update, :destroy ]
 
 protected

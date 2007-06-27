@@ -63,10 +63,12 @@
         <% end -%>
       <% end -%>
       
-      <ul class="tasks">
-        <li><%= link_to "Edit details", edit_show_path(@show), :class => "action edit-show" %></li>
-        <li><%= link_to "Show Bookings", show_bookings_path(@show), :class => "action show-bookings" %></li>
-      </ul>
+      <% if logged_in? -%>
+        <ul class="tasks">
+          <li><%= link_to "Edit details", edit_show_path(@show), :class => "action edit-show" %></li>
+          <li><%= link_to "Show Bookings", show_bookings_path(@show), :class => "action show-bookings" %></li>
+        </ul>
+      <% end -%>
     </div>
   </div>
 </div>
