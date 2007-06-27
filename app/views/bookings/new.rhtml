@@ -1,5 +1,10 @@
-<h1>Book now for <cite><%= @show.name %></cite></h1>
-<% form_for :booking, @booking, :url => show_bookings_path(@show), :html => { :method => :post } do |form| -%>
-  <%= render :partial => "form" %>
-  <%= submit_tag "Book tickets" %>
+<% if @show.bookings_open? %>
+  <h1>Book now for <cite><%= @show.name %></cite></h1>
+  <% form_for :booking, @booking, :url => show_bookings_path(@show), :html => { :method => :post } do |form| -%>
+    <%= render :partial => "form" %>
+    <%= submit_tag "Book tickets" %>
+  <% end -%>
+<% else -%>
+  <h1>Bookings closed</h1>
+  <p>Sorry, we're not taking bookings right now. Please check back later.</p>
 <% end -%>

@@ -392,3 +392,37 @@ textarea:focus {
 .new-role-form input.text {
   width: 200px;
 }
+
+.pagination {
+  padding: 3px 0px;
+  margin: 3px 0px;
+}
+
+.pagination a,
+.pagination .current,
+.pagination .disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px 4px 2px 0px;
+}
+
+.pagination a {
+  border: 1px solid #999;
+  text-decoration: none;
+}
+
+.pagination a:hover, .pagination a:active {
+  border: 1px solid #ec008c !important;
+  color: #000;
+}
+
+.pagination .current {
+  border: 1px solid #ec008c;
+  font-weight: bold;
+  background-color: #ec008c;
+  color: white;
+}
+
+.pagination .disabled {
+  border: 1px solid #eee;
+  color: #ccc;
+}
