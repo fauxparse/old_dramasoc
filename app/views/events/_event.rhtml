@@ -1,4 +1,4 @@
 <div class="event" id="<%= dom_id(event) %>">
-  <h3><%= event.title %></h3>
-  <p><%= event.starts_at %></p>
+  <h3><%= link_to event.title, event_path(event) %></h3>
+  <p><%= event.starts_at.strftime "%A, %e %B, %Y" %></p>
 </div>

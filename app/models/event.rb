@@ -11,4 +11,10 @@ class Event < ActiveRecord::Base
     e.location = location unless location.nil?
     e
   end
+  
+  class << self
+    def upcoming(n = 5)
+      find :all, :conditions => [ "DATE(starts_at) >= ?", Date.today ], :order => "starts_at ASC", :limit => n
+    end
+  end
 end

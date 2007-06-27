@@ -63,5 +63,9 @@ class Show < ActiveRecord::Base
     def current
       find :first, :conditions => [ "is_current = ?", true ], :order => "year DESC, month DESC"
     end
+    
+    def most_recent(n = 3)
+      find :all, :order => "year DESC, month DESC", :limit => n
+    end
   end
 end

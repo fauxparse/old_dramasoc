@@ -1,23 +1,22 @@
 <div id="news-panel">
   <div id="latest-news">
     <div class="article">
-      <h2><%= link_to "Placeholder item", "#" %></h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p><%= link_to "Read more", "#", :class => "read-more" %></p>
-      <p><%= link_to "More news", "#", :class => "read-more" %></p>
+      <% if @news.empty? -%>
+        <h2>Welcome to Dramasoc</h2>
+        <p>Obviously, things are a little messy around here at the moment. We're planning to have the site up and running well before the opening of <a href="/shows/trainspotting-2007/">Trainspotting</a>, though, so check back in a few days and see if there's anything happening.</p>
+        <p><%= link_to "More news", "#", :class => "read-more" %></p>
+      <% else -%>
+      <% end -%>
     </div>
   </div>
   <div id="coming-events">
     <h2>Coming Events</h2>
-    <div class="event">
-      <h3><%= link_to "Placeholder event", "#" %></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </div>
-    <div class="event">
-      <h3><%= link_to "Placeholder event", "#" %></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </div>
-    <p><%= link_to "More events", "#", :class => "read-more" %></p>
+    <% if !@events.empty? -%>
+      <%= render :partial => "events/event", :collection => @events %>
+      <p><%= link_to "More events", events_path, :class => "read-more" %></p>
+    <% else -%>
+      <p>Watch this space for coming events!</p>
+    <% end -%>
   </div>
 </div>
 
@@ -25,9 +24,10 @@
   <div id="homepage-panel">
     <div id="homepage-panel-inner">
       <div id="recent-shows">
-        <h2>Shows</h2>
+        <!-- <h2>Shows</h2>
         <p>Nice big pictures of three recent/upcoming shows.</p>
         <p><%= link_to "More shows", "#", :class => "read-more" %></p>
+        -->
       </div>
     </div>
   </div>

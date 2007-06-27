@@ -2,6 +2,9 @@ class DramasocController < ApplicationController
 
   def home
     @active_tab = :home
+    @events = Event.upcoming(3)
+    @news = []
+    @shows = Show.most_recent(3)
   end
 
   def about
