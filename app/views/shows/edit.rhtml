@@ -115,7 +115,7 @@
 <% end -%>
 
 <% tabbed_form_for :show, :splash, :url => show_path(@show), :html => { :method => :put } do |show| -%>
-  <%= submit_tag "Save", :class => "button" %><br />
+  <p><%= submit_tag "Save", :class => "button" %> <%= show.check_box :is_current, :class => "checkbox" %> Show splash page at <%= link_to "www.dramasoc.org", "http://www.dramasoc.org/" %></p>
   <%= show.text_area "splash_page", :rows => "20", :style => "font-family: monospace;" %>
 <% end -%>
 
