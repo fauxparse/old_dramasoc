@@ -11,6 +11,7 @@ class Role < ActiveRecord::Base
   validates_presence_of :role
   
   before_validation :get_member_by_name
+  after_destroy :delete_unused_members
   
   DisplayOrder = [ :production, :acting, :crew ]
   
@@ -23,16 +24,26 @@ class Role < ActiveRecord::Base
     end
   end
   
+  def type=(t)
+    write_attribute :type, t
+  end
+  
+  def role_type; :acting; end
+  
+protected
+  # Convert a name to a user, creating if necessary.
   def get_member_by_name
     if !@name.blank?
       m = Member.find_or_create_by_name @name
       write_attribute :member_id, m.id unless m.nil?
     end
   end
-  
-  def type=(t)
-    write_attribute :type, t
+
+  # Delete associated members if they're not in any shows and
+  # don't need to log in to the system.
+  def delete_unused_members
+    if !member.is_a?(User) and member.roles(:true).empty?
+      member.destroy
+    end
   end
-  
-  def role_type; :acting; end
 end

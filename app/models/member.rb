@@ -18,7 +18,7 @@ class Member < ActiveRecord::Base
   class << self
     def full_name_to_first_and_last_names(name)
       words = name.split(' ')
-      [ words.shift, words.join(' ') ]
+      [ words.pop, words.join(' ') ].reverse.collect { |w| w.gsub(/_/, ' ') }
     end
     
     def find_or_create_by_name(name)

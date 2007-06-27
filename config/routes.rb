@@ -24,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :shows, :collection => { :current => :get } do |show|
     show.resources :performances, :name_prefix => "show_"
     show.resources :bookings, :name_prefix => "show_"
-    show.resources :roles, :name_prefix => "show_"
+    show.resources :roles, :name_prefix => "show_", :collection => { :reorder => :put }
   end
   map.resources :events
   map.resources :bookings

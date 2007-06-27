@@ -72,6 +72,8 @@
 <% end -%>
 
 <% tabbed_fieldset :roles do -%>
+  <p><strong>Note:</strong> To put a space in a surname, use an underscore (e.g. <em>Luke di_Somma</em>)</p>
+  
   <h3>Production Team</h3>
   <ul class="role-list" id="production_roles">
     <%= render :partial => "edit_role", :collection => @show.production_roles %>
@@ -84,6 +86,8 @@
       <input class="button" type="button" value="Add" onclick="new_role('<%= @show.to_param %>', $F('production_role_type'), $F('production_role_role'), $F('production_role_name')); return false;" />
     <% end -%>
   <% end -%>
+  <%= sortable_element "production_roles", :url => show_reorder_roles_url(@show), :method => :put, :complete => visual_effect(:highlight, "production_roles") %>
+  
   <h3>Cast</h3>
   <ul class="role-list" id="acting_roles">
     <%= render :partial => "edit_role", :collection => @show.acting_roles %>

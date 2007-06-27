@@ -39,4 +39,13 @@ public
       wants.js { render :nothing => true }
     end
   end
+  
+  def reorder
+    [ :production_roles, :acting_roles, :crew_roles ].each do |role_set|
+      params[role_set].each_with_index { |rid, p| Role.update(rid, :position => p + 1) } if params[role_set]
+    end
+    respond_to do |wants|
+      wants.js { render :nothing => true }
+    end
+  end
 end
