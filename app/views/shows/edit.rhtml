@@ -1,7 +1,7 @@
 <h1>Edit show: <%= Show.to_s %></h1>
 
 <% @default_tab ||= :basic %>
-<% tabs = [ [ :basic, "Basic Information" ], [ :bookings, "Bookings" ], [ :venue, "Venue" ], [ :roles, "Cast and Crew" ] ] -%>
+<% tabs = [ [ :basic, "Basic Information" ], [ :bookings, "Bookings" ], [ :venue, "Venue" ], [ :roles, "Cast and Crew" ], [ :splash, "Splash" ] ] -%>
 
 <%= error_messages_for "show" %>
 
@@ -113,6 +113,12 @@
     <% end -%>
   <% end -%>
 <% end -%>
+
+<% tabbed_form_for :show, :splash, :url => show_path(@show), :html => { :method => :put } do |show| -%>
+  <%= submit_tag "Save", :class => "button" %><br />
+  <%= show.text_area "splash_page", :rows => "20", :style => "font-family: monospace;" %>
+<% end -%>
+
 
 <% content_for :header do -%>
   <% if @default_tab == :venue -%>
