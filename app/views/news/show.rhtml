@@ -1,0 +1,8 @@
+<% content_tag :div, :class => "post", :id => dom_id(@post) do -%>
+  <%= content_tag :h1, @post.title unless @post.title.blank? %></h1>
+  <%= content_tag :div, bc(@post.body), :class => "post-body" %>
+  <%= content_tag :div, bc(@post.more), :class => "post-more" unless @post.more.blank? %>
+  <div class="post-footer">
+    Posted by <%= @post.user %> at <%= @post.created_at.strftime "%l:%M%p, %A, %e %B, %Y" %>
+  </div>
+<% end -%>

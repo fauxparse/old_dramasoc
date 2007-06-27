@@ -1,0 +1,6 @@
+<% content_tag :div, :class => "post", :id => dom_id(post) do -%>
+  <h2><%= link_to post.title || "New news is good news...", post_path(post) %></h2>
+  <%= content_tag :div, bc(post.body), :class => "post-body" %>
+  <%= content_tag :p, link_to("Read more", post_path(post), :class => "read-more") unless post.more.blank? %>
+  <div class="post-footer">Posted by <%= post.user %> at <%= post.created_at.strftime "%l:%M%p, %A, %e %B, %Y" %></div>
+<% end -%>

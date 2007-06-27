@@ -6,6 +6,7 @@
         <p>Obviously, things are a little messy around here at the moment. We're planning to have the site up and running well before the opening of <a href="/shows/trainspotting-2007/">Trainspotting</a>, though, so check back in a few days and see if there's anything happening.</p>
         <p><%= link_to "More news", "#", :class => "read-more" %></p>
       <% else -%>
+        <%= render :partial => "news/post", :collection => @news %>
       <% end -%>
     </div>
   </div>
