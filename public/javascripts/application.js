@@ -26,7 +26,7 @@ function activate_tab(tab_name) {
   });
 
   id = 'fields_' + tab_name;
-  $$('fieldset.tabbed').each(function(fs) {
+  $$('.tabbed').each(function(fs) {
     if (fs.id == id) {
       Element.show(fs);      
     } else {
@@ -59,6 +59,24 @@ function marker_dragged(marker) {
 
 function point_clicked(point) {
   open_redbox('/venues/new', { parameters:{ latitude:point.lat(), longitude:point.lng() } });
+}
+
+function new_role(show_id, type, role, name) {
+  params = 'role[type]=' + type + '&role[name]=' + name + '&role[role]=' + role;
+  new Ajax.Request('/shows/' + show_id + '/roles', {
+    method:'post',
+    asynchronous:true,
+    evalScripts:true,
+    parameters:params
+  });
+  if (type == '') {
+    type = 'acting_role';
+  } else {
+    type = type.replace(/Role$/, '_role').toLowerCase();
+  }
+  $(type + '_role').value = '';
+  $(type + '_name').value = '';
+  $(type + '_role').focus();
 }
 
 function redbox_visible() {

@@ -1,3 +1,5 @@
 class ProductionRole < Role
-  def my_type; :production; end
+  def role_type; :production; end
+
+  alias_attribute :job, :role
 end

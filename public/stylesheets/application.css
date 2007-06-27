@@ -270,7 +270,9 @@ p {
   background: white; 
 }
 
-fieldset.tabbed {
+fieldset.tabbed,
+form.tabbed {
+  display: block;
   clear: left;
   border: 1px solid #999;
   border-top: none;
@@ -358,3 +360,35 @@ textarea:focus {
   color: #999;
 }
 
+.role-list {
+  margin: 0px 0px 2ex;
+  padding: 0px;
+  width: 424px;
+}
+
+.role-list .role {
+  clear: both;
+  display: block;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  min-height: 1.6em;
+  line-height: 1.6em;
+}
+
+.role-list .role .job {
+  float: left;
+  width: 200px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.role-list .role .member {
+  float: right;
+  width: 200px;
+  text-align: left;
+}
+
+.new-role-form input.text {
+  width: 200px;
+}

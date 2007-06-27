@@ -1,3 +1,5 @@
 class CrewRole < Role
-  def my_type; :crew; end
+  def role_type; :crew; end
+
+  alias_attribute :job, :role
 end

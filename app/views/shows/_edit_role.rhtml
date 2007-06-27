@@ -1,0 +1,4 @@
+<li class="role" id="role_<%= edit_role.id %>">
+  <span class="job"><%= edit_role.role %> <%= link_to_remote "&times", :url => formatted_show_role_path(edit_role.show.to_param, edit_role, :js), :method => :delete, :loading => visual_effect(:fade, "role_#{edit_role.id}") %></span>
+  <span class="member"><%= edit_role.member.to_s %></span>
+</li>

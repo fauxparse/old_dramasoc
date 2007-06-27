@@ -1,2 +1,3 @@
 <%= select_tag "show[venue_id]", options_for_select([ [ "(no venue selected)", "" ] ] + Venue.find(:all).collect { |v| [ v.name, v.id ] }, selected), :autocomplete => "off", :id => "show_venue_id" %>
 <%= observe_field "show_venue_id", :function => "if (value != '') { map.panTo(eval('markers[' + value + ']').getPoint()); }" %>
+<%= submit_tag "Save" %>

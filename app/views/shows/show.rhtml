@@ -21,7 +21,7 @@
           <% unless @show.production_roles.empty? -%>
             <dl>
               <% @show.production_roles.each do |role| -%>
-                <dt><%= role.job %></dt>
+                <dt><%= role.role %></dt>
                 <dd><%= role.member ? role.member.to_s : "(unassigned)" %></dd>
               <% end -%>
             </dl>
@@ -31,7 +31,7 @@
             <h3>Cast</h3>
             <dl>
               <% @show.acting_roles.each do |role| -%>
-                <dt><%= role.character %></dt>
+                <dt><%= role.role %></dt>
                 <dd><%= role.member ? role.member.to_s : "(not cast)" %></dd>
               <% end -%>
             </dl>
@@ -41,7 +41,7 @@
             <h3>Crew</h3>
             <dl>
               <% @show.crew_roles.each do |role| -%>
-                <dt><%= role.job %></dt>
+                <dt><%= role.role %></dt>
                 <dd><%= role.member ? role.member.to_s : "(unassigned)" %></dd>
               <% end -%>
             </dl>

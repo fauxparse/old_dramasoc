@@ -5,6 +5,7 @@ class Show < ActiveRecord::Base
   has_permalink :name_and_date
   
   has_many :roles, :order => "position ASC"
+  
   has_many :production_roles, :class_name => "ProductionRole", :conditions => "roles.type = 'ProductionRole'", :order => "position ASC"
   has_many :acting_roles, :class_name => "Role", :conditions => "roles.type IS NULL", :order => "position ASC"
   has_many :crew_roles, :class_name => "CrewRole", :conditions => "roles.type = 'CrewRole'", :order => "position ASC"

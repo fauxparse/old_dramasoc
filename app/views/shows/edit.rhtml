@@ -1,6 +1,122 @@
-<h1>Edit show</h1>
+<h1>Edit show: <%= Show.to_s %></h1>
 
-<% form_for :show, @show, :url => show_path(@show), :html => { :method => :put } do |form| -%>
-  <%= render :partial => "form" %>
+<% @default_tab ||= :basic %>
+<% tabs = [ [ :basic, "Basic Information" ], [ :bookings, "Bookings" ], [ :venue, "Venue" ], [ :roles, "Cast and Crew" ] ] -%>
+
+<%= error_messages_for "show" %>
+
+<ul class="fieldset-tabs">
+  <% tabs.each do |tab| -%>
+    <% if tab.first == :venue and @default_tab != :venue -%>
+      <%= content_tag :li, link_to(tab.last, { :url => edit_show_path(@show), :method => :get, :active_tab => 'venue' }, { :id => "form_tab_#{tab.first}", :class => (tab.first == @default_tab) ? "active" : nil }) %>
+    <% else -%>
+      <%= content_tag :li, link_to_function(tab.last, "activate_tab('#{tab.first}')"), :id => "form_tab_#{tab.first}", :class => (tab.first == @default_tab) ? "active" : nil %>
+    <% end -%>
+  <% end -%>
+</ul>
+
+<%= hidden_field_tag "default_tab", @default_tab.to_s, :id => "default_tab" %>
+
+<% tabbed_form_for :show, :basic, :url => show_path(@show), :html => { :method => :put } do |show| -%>
+  <ol class="form">
+    <li class="text required"><label for="show_name">Name:</label><%= show.text_field :name, :class => "text" %></li>
+    <li class="date"><label for="show_year">Date:</label><span class="field"><%= show.select :month, [ [ "sometime in", "" ] ] + (1..12).collect { |m| [ Date::MONTHNAMES[m], m ] } %> <%= show.select :year, (1960..2038).collect { |y| [ y, y ] }, :include_blank => true %></span></li>
+    <li class="text"><label for="show_author">Author:</label><%= show.text_field :author, :class => "text" %></li>
+    <li class="textarea"><label for="show_description">Description:</label><%= show.text_area "description", :rows => "15" %></li>
+  </ol>  
   <%= submit_tag "Save", :class => "button" %>
 <% end -%>
+
+<% tabbed_form_for :show, :bookings, :url => show_path(@show), :html => { :method => :put } do |show| -%>
+  <p><%= show.check_box :bookings_open, :autocomplete => "off" %> Tick to enable online bookings for this show</p>
+  <ol class="form">
+    <li class="text"><label for="show_booking_email">Booking Email:</label><%= show.text_field :booking_email, :class => "text" %></li>
+    <li class="text">
+      <label for="show_waged_price">Ticket Prices:</label>
+      <span class="field">$<%= show.text_field :waged_price, :class => "text price" %> waged</span>
+      <span class="field subsequent">$<%= show.text_field :unwaged_price, :class => "text price" %> unwaged</span>
+    </li>
+    <li class="list">
+      <label>Performances:</label>
+      <ul class="performances" id="performances">
+        <%= render :partial => "performance", :collection => @show.performances %>
+      </ul>
+      <span class="field subsequent">
+        <%= select_datetime Time.now, :order => [ :day, :month, :year ] %>
+        <input class="button" type="button" name="new_performance_button" value="add" id="new_performance_button" onclick="add_new_performance();">
+        <script type="text/javascript">
+          function add_new_performance() {
+            d = escape('performance[time]') + '=' + escape($F('date_year') + '-' + $F('date_month') + '-' + $F('date_day') + ' ' + $F('date_hour') + ':' + $F('date_minute') + ':00');
+            new Ajax.Request('<%= show_performances_path(@show) %>', { asynchronous:true, evalScripts:true, method:'post', parameters:d })
+          }
+        </script>
+      </span>
+    </li>
+  </ol>
+  <%= submit_tag "Save", :class => "button" %>
+<% end -%>
+
+<% tabbed_fieldset :venue, :style => "" do -%>
+  <% form_for :show, :url => show_path(@show), :html => { :method => :put } do |show| -%>
+    <%= hidden_field_tag "active_tab", "venue" %>
+    <ol class="form">
+      <li class="select">
+        <label for="show_venue_id">Performance Venue:</label>
+        <span class="field" id="venue_selector">
+          <%= render :partial => "venues/venue_selector", :locals => { :selected => @show.venue_id } %>
+        </span>
+      </li>
+    </ol>
+    <div id="venue_map" style="width: 612px; height: 256px;"></div>
+  <% end -%>
+<% end -%>
+
+<% tabbed_fieldset :roles do -%>
+  <h3>Production Team</h3>
+  <ul class="role-list" id="production_roles">
+    <%= render :partial => "edit_role", :collection => @show.production_roles %>
+  </ul>
+  <% content_tag :div, :class => "new-role-form", :id => "new_production_role" do %>
+    <% fields_for :production_role, ProductionRole.new do |role| %>
+      <%= role.hidden_field :type %>
+      <%= role.text_field :role, :class => "text" %>
+      <%= role.text_field :name, :class => "text" %>
+      <input class="button" type="button" value="Add" onclick="new_role('<%= @show.to_param %>', $F('production_role_type'), $F('production_role_role'), $F('production_role_name')); return false;" />
+    <% end -%>
+  <% end -%>
+  <h3>Cast</h3>
+  <ul class="role-list" id="acting_roles">
+    <%= render :partial => "edit_role", :collection => @show.acting_roles %>
+  </ul>
+  <% content_tag :div, :class => "new-role-form", :id => "new_acting_role" do %>
+    <% fields_for :acting_role, Role.new do |role| %>
+      <%= role.hidden_field :type %>
+      <%= role.text_field :role, :class => "text" %>
+      <%= role.text_field :name, :class => "text" %>
+      <input class="button" type="button" value="Add" onclick="new_role('<%= @show.to_param %>', $F('acting_role_type'), $F('acting_role_role'), $F('acting_role_name')); return false;" />
+    <% end -%>
+  <% end -%>
+  <h3>Crew</h3>
+  <ul class="role-list" id="crew_roles">
+    <%= render :partial => "edit_role", :collection => @show.crew_roles %>
+  </ul>
+  <% content_tag :div, :class => "new-role-form", :id => "new_crew_role" do %>
+    <% fields_for :crew_role, CrewRole.new do |role| %>
+      <%= role.hidden_field :type %>
+      <%= role.text_field :role, :class => "text" %>
+      <%= role.text_field :name, :class => "text" %>
+      <input class="button" type="button" value="Add" onclick="new_role('<%= @show.to_param %>', $F('crew_role_type'), $F('crew_role_role'), $F('crew_role_name')); return false;" />
+    <% end -%>
+  <% end -%>
+<% end -%>
+
+<% content_for :header do -%>
+  <% if @default_tab == :venue -%>
+    <%= GMap.header :host => request.env['SERVER_NAME'] %>
+    <%= javascript_tag "var markers = new Array();" %>
+    <%= google_map('venue_map', Venue.find(:all), :marker_clicked => "marker_clicked", :marker_dragged => "marker_dragged", :point_clicked => "point_clicked").to_html %>
+    <%= javascript_tag "window.onunload = addCodeToFunction(window.onload,function() { GUnload(); });" %>
+  <% end -%>
+<% end -%>
+
+

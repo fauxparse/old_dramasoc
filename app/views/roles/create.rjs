@@ -1,0 +1,4 @@
+if @role.valid?
+  page.insert_html :bottom, "#{@role.role_type}_roles", :partial => "shows/edit_role", :object => @role
+  page.visual_effect :highlight, "role_#{@role.id}"
+end

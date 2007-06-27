@@ -21,6 +21,19 @@ module ApplicationHelper
     end
   end
   
+  def tabbed_form_for(object_name, tab_id, *args, &proc)
+    raise ArgumentError, "Missing block" unless block_given?
+    options = args.last.is_a?(Hash) ? args.pop : {}
+    html_options = (options.delete(:html) || {}).stringify_keys
+    html_options["id"] ||= "fields_#{tab_id}"
+    html_options["class"] ||= "tabbed"
+    html_options["style"] ||= "display: none;" unless @default_tab.to_s == tab_id.to_s
+    concat(form_tag(options.delete(:url) || {}, html_options), proc.binding)
+    concat(hidden_field_tag("active_tab", tab_id.to_s), proc.binding)
+    fields_for(object_name, *(args << options), &proc)
+    concat('</form>', proc.binding)
+  end
+  
   def google_map(name = "map", venues = [], options = {})
     map = GMap.new(name)
     map.control_init(options[:controls] || { :large_map => true, :map_type => true })
