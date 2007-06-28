@@ -7,6 +7,16 @@ A booking for <%= @booking.show %> has been placed as follows:
     EMAIL: <%= @booking.email || "(not supplied)" %>
     PHONE: <%= @booking.phone || "(not supplied)" %>
     
+    <% if @booking.notify_me -%>
+    This person would like to know more about Dramasoc events.
+    The President has been sent an email accordingly.
+    <% end -%>
+    
+    <% if !@booking.comments -%>
+    OTHER COMMENTS
+    <%= @booking.comments %>
+    <% end -%>
+    
 <% if @booking.email.blank? -%>
 This person has NOT been contacted by email to confirm the booking,
 as no email address was supplied. Please contact them by phone
@@ -17,4 +27,4 @@ for their records. You don't need to follow this up.
 <% end -%>
 
 Thank you,
-Dramasoc Interweb Robot
+The Dramasoc Interweb Robot

@@ -1,0 +1,19 @@
+Dear Dramasoc President,
+
+The following enquiry has come through from the Dramasoc website.
+Please respond or delegate as appropriate.
+
+Thanks,
+The Dramasoc Interweb Robot
+
+-----
+
+NAME:  <%= @name %>
+EMAIL: <%= @email %>
+
+<% if @comments.blank? -%>
+Please notify me about upcoming shows and events.
+<% else -%>
+COMMENTS:
+<%= @comments %>
+<% end -%>

@@ -43,6 +43,7 @@ public
       
       Postman.deliver_booking_request @booking
       Postman.deliver_booking_confirmation @booking if !@booking.email.blank?
+      Postman.deliver_information_request @booking.name, @booking.email, @booking.comments, true if @booking.notify_me
       
       redirect_to show_path(@show)
     else
