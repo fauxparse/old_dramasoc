@@ -3,12 +3,25 @@ class Performance < ActiveRecord::Base
   has_many :bookings # Hopefully! ;)
   validates_uniqueness_of :time, :scope => :show_id
   
+  def <=>(another)
+    time <=> another.time
+  end
+  
   def date
     time.to_date
   end
   
   def strftime(fmt = "%A, %e %B at %l:%M%p")
     time.strftime fmt
+  end
+  
+  def to_option(fmt = "%A, %e %B at %l:%M%p")
+    fmt << " (CLOSED)" if !bookings_open?
+    strftime fmt
+  end
+  
+  def bookings_open?
+    bookings_open and show.bookings_open? and !(show.auto_cutoff_enabled? and Time.now > (time - show.auto_cutoff.hours))
   end
   
   def to_ical

@@ -51,8 +51,8 @@ public
   def update
     @default_tab = params[:active_tab].to_sym if params[:active_tab]
     if @show.update_attributes params[:show]
-      flash.now[:notice] = "Show details updated successfully"
-      render :action => :edit
+      flash[:notice] = "Show details updated successfully"
+      redirect_to :action => :edit
     else
       render :action => :edit
     end

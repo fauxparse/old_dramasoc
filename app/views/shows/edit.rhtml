@@ -28,8 +28,9 @@
 <% end -%>
 
 <% tabbed_form_for :show, :bookings, :url => show_path(@show), :html => { :method => :put } do |show| -%>
-  <p><%= show.check_box :bookings_open, :autocomplete => "off" %> Tick to enable online bookings for this show</p>
   <ol class="form">
+    <li class="checkbox"><span class="field"><%= show.check_box :bookings_open, :autocomplete => "off", :class => "checkbox" %> Tick to enable online bookings for this show</span></li>
+    <li class="checkbox"><span class="field"><%= show.check_box :auto_cutoff_enabled, :class => "checkbox", :autocomplete => "off" %> Close bookings for this show <%= show.select :auto_cutoff, (1..24).collect { |h| [ pluralize(h, "hour"), h ] }, {}, :disabled => @show.auto_cutoff.nil? %> before the performance</span></li>
     <li class="text"><label for="show_booking_email">Booking Email:</label><%= show.text_field :booking_email, :class => "text" %></li>
     <li class="text">
       <label for="show_waged_price">Ticket Prices:</label>
@@ -53,6 +54,7 @@
       </span>
     </li>
   </ol>
+  <%= observe_field "show_auto_cutoff_enabled", :function => "$('show_auto_cutoff').disabled = !$('show_auto_cutoff_enabled').checked;" %>
   <%= submit_tag "Save", :class => "button" %>
 <% end -%>
 

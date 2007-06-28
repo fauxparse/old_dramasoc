@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 13) do
+ActiveRecord::Schema.define(:version => 14) do
 
   create_table "bookings", :force => true do |t|
     t.column "performance_id", :integer
@@ -41,8 +41,9 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "performances", :force => true do |t|
-    t.column "time",    :datetime
-    t.column "show_id", :integer
+    t.column "time",          :datetime
+    t.column "show_id",       :integer
+    t.column "bookings_open", :boolean,  :default => true
   end
 
   create_table "posts", :force => true do |t|
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(:version => 13) do
     t.column "author",        :string
     t.column "bookings_open", :boolean,                                             :default => false
     t.column "booking_email", :string
+    t.column "auto_cutoff",   :integer,                                             :default => 3
   end
 
   add_index "shows", ["venue_id"], :name => "fk_venue_id"

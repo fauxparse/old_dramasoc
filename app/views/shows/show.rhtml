@@ -55,9 +55,9 @@
       <% if @show.bookings_open? -%>
         <% content_tag :div, :class => 'box' do -%>
           <h2>Book Online Now</h2>
-          <% form_for :booking, Booking.new, :url => show_new_booking_path(@show), :html => { :method => :get, :id => "quick_booking_form" } do |form| -%>
+          <% form_for :booking, Booking.new(:performance_id => @show.next_performance), :url => show_new_booking_path(@show), :html => { :method => :get, :id => "quick_booking_form" } do |form| -%>
             <label for="booking_performance">Book tickets for:</label>
-            <%= form.select :performance_id, @show.performances.collect { |p| [ p.strftime, p.id ] } %>
+            <%= form.select :performance_id, @show.performances.sort.collect { |p| [ p.to_option("%a %d %b, %l:%M%p"), p.id ] }, {}, :autocomplete => "off" %>
             <%= submit_tag "Book" %>
           <% end -%>
         <% end -%>

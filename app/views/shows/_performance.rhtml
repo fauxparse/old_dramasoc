@@ -1,4 +1,8 @@
 <li class="performance" id="<%= dom_id(performance) %>">
+  <% if logged_in? -%>
+    <%= check_box_tag "performance_open[#{performance.id}]", "1", performance.bookings_open, :id => dom_id(performance, 'open') %>
+    <%= observe_field dom_id(performance, 'open'), :url => show_open_performance_path(performance.show, performance), :method => :put, :with => "state" %>
+  <% end -%>
   <%= performance.time.strftime "%A, %e %B, %Y at %l:%M" %>
   <% if logged_in? -%>
     <%= link_to_remote "Delete", :url => show_performance_path(@show || performance.show, performance), :method => :delete, :confirm => "Are you sure?" %>

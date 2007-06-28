@@ -37,4 +37,12 @@ public
       wants.js
     end
   end
+  
+  def open
+    @performance = @show.performances.find params[:id]
+    @performance.update_attribute :bookings_open, params[:state]
+    respond_to do |wants|
+      wants.js { render :nothing => true }
+    end
+  end
 end

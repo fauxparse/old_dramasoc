@@ -312,6 +312,11 @@ ol.form li ul.performances {
   width: 440px;  
 }
 
+ol.form li.checkbox .field {
+  margin: 0px;
+  width: auto;  
+}
+
 ol.form li .field.subsequent {
   margin-top: 0.5ex;
 }
