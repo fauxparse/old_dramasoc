@@ -11,6 +11,9 @@ A booking for <%= @booking.show %> has been placed as follows:
 This person has NOT been contacted by email to confirm the booking,
 as no email address was supplied. Please contact them by phone
 (if possible) to confirm the booking.
+<% else -%>
+An email confirming this booking has been sent to the patron
+for their records. You don't need to follow this up.
 <% end -%>
 
 Thank you,
