@@ -42,6 +42,9 @@ public
       # TODO: Send email to user
       tickets = (t = @booking.total_tickets) == 1 ? "1 ticket" : "#{t} tickets"
       flash[:notice] = "You have booked #{tickets} for <cite>#{@show}</cite> on #{@booking.performance.strftime}. This booking will be confirmed by email. Thanks, and enjoy the show! (<a href=\"/bookings/#{@booking.id}.ics\">Add to iCal</a>)"
+      
+      Postman.deliver_booking_confirmation if !@booking.email.blank?
+      
       redirect_to show_path(@show)
     else
       render :action => "new"

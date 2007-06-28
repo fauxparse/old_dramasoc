@@ -1,0 +1,17 @@
+A booking for <%= @booking.show %> has been placed as follows:
+
+    <%= @booking.name.upcase %>
+    <%= @booking.performance.strftime %>
+    <%= @booking.tickets %>
+
+    EMAIL: <%= @booking.email || "(not supplied)" %>
+    PHONE: <%= @booking.phone || "(not supplied)" %>
+    
+<% if @booking.email.blank? -%>
+This person has NOT been contacted by email to confirm the booking,
+as no email address was supplied. Please contact them by phone
+(if possible) to confirm the booking.
+<% end -%>
+
+Thank you,
+Dramasoc Interweb Robot
