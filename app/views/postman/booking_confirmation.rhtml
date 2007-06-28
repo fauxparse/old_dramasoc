@@ -1,0 +1,21 @@
+Hi <%= @booking.name || "there" %>,
+
+This email is to confirm your booking for <%= @booking.show %> as follows:
+
+    <%= @booking.show.name.upcase %>
+    <%= @booking.performance.strftime %>
+    
+    <%= @booking.show.venue.name %>
+    <%= @booking.show.venue.address.gsub "\n", "\n    " %>
+    
+    <%= @booking.tickets %>
+    <%= sprintf "TOTAL: $%.2f", @booking.total_price %> (please bring cash!)
+    
+Please be on time! Tickets booked online will be held until 20 minutes
+prior to the show opening. Tickets not picked up and paid for by
+this time may be sold as door sales.
+
+Thank you, and enjoy the show!
+
+Dramasoc
+www.dramasoc.org

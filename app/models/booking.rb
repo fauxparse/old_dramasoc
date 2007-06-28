@@ -31,4 +31,8 @@ class Booking < ActiveRecord::Base
   def total_price
     waged_tickets.to_f * show.waged_price + unwaged_tickets.to_f * show.unwaged_price
   end
+  
+  def tickets
+    [ :waged, :unwaged ].collect { |w| (t = send(w)).zero? ? nil : ("#{t} #{w} " + (t == 1 ? "ticket" : "tickets")) }.compact.join(' and ')
+  end
 end
