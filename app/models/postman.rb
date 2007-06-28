@@ -23,6 +23,6 @@ class Postman < ActionMailer::Base
     subject     "Please tell me more about Dramasoc"
     bcc         "fauxparse@gmail.com"
     
-    body        :name => name, :email => email, :comments => comments, :add_me = add_me
+    body        :name => name, :email => email, :comments => comments, :add_me => add_me
   end
 end
