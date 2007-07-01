@@ -39,6 +39,44 @@ body.home a:hover {
   min-width: 880px;
 }
 
+#login_bar {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  background: black;
+  z-index: 100;
+  opacity: 0.6;
+}
+
+#login_bar a {
+  color: white;
+  border: none;
+}
+
+#login_bar a:hover {
+  color: #ec008c;  
+}
+
+#login_bar #login_toggle {
+  display: block;
+  background: black;
+  position: absolute;
+  right: 1em;
+  bottom: -2em;
+  line-height: 2em;
+  font-size: 85%;
+  color: #ccc;
+  padding: 0px 1em;
+}
+
+#login_bar form,
+#login_bar #user_info {
+  display: block;
+  margin: 0px;
+  padding: 0.5ex 1em 0.5ex 128px;
+}
+
 #flash {
   margin-top: 16px;
   padding: 8px;

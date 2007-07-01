@@ -12,6 +12,7 @@
   </head>
   <body<%= " class=\"#{@active_tab.to_s}\"" unless !@active_tab %>>
     <div id="container">
+      <%= render :partial => "shared/login" %>
       <div id="header">
         <h2 id="logo"><%= link_to "Dramasoc", "/dramasoc/home/" %></h2>
       </div>

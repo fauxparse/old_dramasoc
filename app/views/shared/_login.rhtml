@@ -1,0 +1,23 @@
+<div id="login_bar">
+  <% if logged_in? -%>
+    <div id="login_bar_form" style="display: none">
+      <div id="user_info">
+        Logged in as <strong><%= current_user.name %></strong> (<%= current_user.login %>) |
+        <%= link_to "My Account", edit_user_path(current_user) %> |
+        <%= link_to "Log out", "/logout" %>
+      </div>
+    </div>
+    <%= link_to_function current_user.name, "Effect.toggle('login_bar_form', 'slide', { duration: 0.4 });", :id => "login_toggle" %>
+  <% else -%>
+    <div id="login_bar_form" style="display: none">
+      <% form_tag session_path, :method => :post do -%>
+        Login: <%= text_field_tag 'login', {}, :id => "login_field" %>
+        Password: <%= password_field_tag 'password' %>
+        <%= check_box_tag 'remember_me' %> Remember me
+        <%= submit_tag 'Log in' %>
+        <%= link_to_function "Cancel", "Effect.toggle('login_bar_form', 'slide', { duration: 0.4 })" %>
+      <% end -%>
+    </div>
+    <%= link_to_function "Log in", "Effect.toggle('login_bar_form', 'slide', { duration: 0.4 }); $('login_field').focus();", :id => "login_toggle" %>
+  <% end -%>
+</div>
