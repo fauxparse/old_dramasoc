@@ -1,7 +1,7 @@
 require 'fuzzy_dates'
 
 class Show < ActiveRecord::Base
-  composed_of :date, :class_name => "FuzzyDate", :mapping => %w(year month)
+  composed_of :date, :class_name => "FuzzyDate", :mapping => [ %w(year year), %w(month month) ]
   has_permalink :name_and_date
   
   has_many :roles, :order => "position ASC"

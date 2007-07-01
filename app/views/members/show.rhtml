@@ -1,0 +1,46 @@
+<% @page_title = @member.name %>
+
+<div class="member-title">
+  <h1><%= @member.name %></h1>
+</div>
+
+<div id="columns">
+  <div id="main">
+    <div id="main-inner">
+      <% if !(roles = @member.acting_roles).empty? %>
+        <h3>Actor</h3>
+        <dl class="people">
+          <% roles.keys.sort.each do |show| -%>
+            <dt><%= link_to show.name_and_date, show_path(show) %></dt>
+            <%= roles[show].collect { |r| content_tag :dd, r } %>
+          <% end -%>
+        </dl>
+      <% end -%>
+      <% if !(roles = @member.production_roles).empty? %>
+        <h3>Production</h3>
+        <dl class="people">
+          <% roles.keys.sort.each do |show| -%>
+            <dt><%= link_to show.name, show_path(show) %></dt>
+            <%= roles[show].collect { |r| content_tag :dd, r } %>
+          <% end -%>
+        </dl>
+      <% end -%>
+      <% if !(roles = @member.crew_roles).empty? %>
+        <h3>Crew</h3>
+        <dl class="people">
+          <% roles.keys.sort.each do |show| -%>
+            <dt><%= link_to show.name, show_path(show) %></dt>
+            <%= roles[show].collect { |r| content_tag :dd, r } %>
+          <% end -%>
+        </dl>
+      <% end -%>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="sidebar-inner">
+      <% content_tag :div, :class => 'box', :id => 'help_archives' do -%>
+        <%= render :partial => "shared/help_the_archives" %>
+      <% end -%>
+    </div>
+  </div>
+</div>

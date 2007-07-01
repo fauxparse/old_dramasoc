@@ -69,3 +69,16 @@ module ActionView
   end
 end
 
+module Enumerable
+  def split_by(method, order = :none)
+    h = Hash.new { |h, k| h[k] = [] }
+    each { |element| h[element.send(method)] << element }
+    if block_given?
+      group_keys = h.keys.sort
+      group_keys.reverse! unless order == :ascending
+      group_keys.each { |k| yield [ k, h[k] ] }
+    else
+      return h
+    end
+  end
+end

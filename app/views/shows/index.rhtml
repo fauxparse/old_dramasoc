@@ -1,4 +1,8 @@
 <h1>Shows</h1>
-<ul>
-  <%= render :partial => @shows %>  
-</ul>
+<dl id="shows_by_year">
+  <% @shows.split_by :year, :descending do |year, shows| %>
+    <dt><%= year %></dt>
+    <%= render :partial => shows.sort.reverse %>  
+  <% end -%>
+</dl>
+<%= render :partial => "shared/help_the_archives" %>

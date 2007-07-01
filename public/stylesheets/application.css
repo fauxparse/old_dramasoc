@@ -202,7 +202,8 @@ h2 {
 }
 
 h3 {
-  margin: 2ex 0px 0ex;  
+  margin: 0px;
+  padding: 2ex 0px 0ex;  
 }
 
 p {
@@ -263,6 +264,7 @@ p {
 #columns #sidebar {
   float: right;
   width: 200px;
+  font-size: 85%;
 }
 
 #columns #sidebar-inner {
@@ -270,11 +272,22 @@ p {
 
 #sidebar h2 {
   font-size: 125%;
-  margin: 0px 0px 1ex;
+  margin: 0px 0px 0ex;
 }
 
 #sidebar .box {
   margin: 0px 0px 8px;  
+}
+
+#book_online {
+  background: #ec008c;
+  color: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+#show_tasks {
+  border-bottom: 1px dotted #ccc;
 }
 
 .fieldset-tabs {
@@ -468,4 +481,51 @@ textarea:focus {
 .pagination .disabled {
   border: 1px solid #eee;
   color: #ccc;
+}
+
+#shows_by_year {
+  margin: 0em 0px 2ex;
+  padding: 0px;
+  border-bottom: 1px dotted #ccc;
+}
+
+#shows_by_year dt {
+  font-size: 200%;
+  color: #ccc;
+  border-top: 1px dotted #ccc;
+  height: 0px;
+  overflow: visible;
+}
+
+#shows_by_year dd {
+  margin: 1.5ex 0px 1ex 6em;
+  font-size: 125%;
+}
+
+
+dl.people {
+  margin: 0px 0px 2ex;
+  padding: 0px;
+}
+
+dl.people dt {
+  margin: 0px;
+  padding: 0px;
+  width: 160px;
+  clear: left;
+  float: left;
+  text-align: right;
+  font-weight: bold;
+}
+
+dl.people dd {
+  display: block;
+  margin: 0px 0px 0px 184px;
+  padding: 0px;
+}
+
+#show_actors,
+#show_crew {
+  border-top: 1px dotted #ccc;
+  padding-top: 2ex;
 }

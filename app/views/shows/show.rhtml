@@ -18,34 +18,9 @@
 
           <h2>Cast and Crew</h2>
 
-          <% unless @show.production_roles.empty? -%>
-            <dl>
-              <% @show.production_roles.each do |role| -%>
-                <dt><%= role.role %></dt>
-                <dd><%= role.member ? role.member.to_s : "(unassigned)" %></dd>
-              <% end -%>
-            </dl>
-          <% end -%>
-
-          <% unless @show.acting_roles.empty? -%>
-            <h3>Cast</h3>
-            <dl>
-              <% @show.acting_roles.each do |role| -%>
-                <dt><%= role.role %></dt>
-                <dd><%= role.member ? role.member.to_s : "(not cast)" %></dd>
-              <% end -%>
-            </dl>
-          <% end -%>
-
-          <% unless @show.crew_roles.empty? -%>
-            <h3>Crew</h3>
-            <dl>
-              <% @show.crew_roles.each do |role| -%>
-                <dt><%= role.role %></dt>
-                <dd><%= role.member ? role.member.to_s : "(unassigned)" %></dd>
-              <% end -%>
-            </dl>
-          <% end -%>
+          <%= render :partial => "people", :locals => { :people => @show.production_roles, :options => { :id => "show_producers" } } %>
+          <%= render :partial => "people", :locals => { :people => @show.acting_roles, :options => { :id => "show_actors" } } %>
+          <%= render :partial => "people", :locals => { :people => @show.crew_roles, :options => { :id => "show_crew" } } %>
         <% end -%>
       <% end -%>
     </div>
@@ -53,7 +28,7 @@
   <div id="sidebar">
     <div id="sidebar-inner">
       <% if @show.bookings_open? -%>
-        <% content_tag :div, :class => 'box' do -%>
+        <% content_tag :div, :class => 'box', :id => 'book_online' do -%>
           <h2>Book Online Now</h2>
           <% form_for :booking, Booking.new(:performance_id => @show.next_performance), :url => show_new_booking_path(@show), :html => { :method => :get, :id => "quick_booking_form" } do |form| -%>
             <label for="booking_performance">Book tickets for:</label>
@@ -64,10 +39,16 @@
       <% end -%>
       
       <% if logged_in? -%>
-        <ul class="tasks">
-          <li><%= link_to "Edit details", edit_show_path(@show), :class => "action edit-show" %></li>
-          <li><%= link_to "Show Bookings", show_bookings_path(@show), :class => "action show-bookings" %></li>
-        </ul>
+        <% content_tag :div, :class => 'box', :id => 'show_tasks' do -%>
+          <ul class="tasks">
+            <li><%= link_to "Edit Details", edit_show_path(@show), :class => "action edit-show" %></li>
+            <li><%= link_to "Show Bookings", show_bookings_path(@show), :class => "action show-bookings" %></li>
+          </ul>
+        <% end -%>
+      <% end -%>
+      
+      <% content_tag :div, :class => 'box', :id => 'help_archives' do -%>
+        <%= render :partial => "shared/help_the_archives" %>
       <% end -%>
     </div>
   </div>

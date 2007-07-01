@@ -1,0 +1,9 @@
+<% if !people.empty? -%>
+  <% content_tag :dl, { :class => "people" }.merge(defined?(options) ? options : {}) do %>
+    <% curr = nil -%>
+    <% people.each do |role| -%>
+      <%= content_tag :dt, (curr = role.role) unless role.role == curr %>
+      <dd><%= link_to role.member.name, member_path(role.member) %></dd>
+    <% end -%>
+  <% end -%>
+<% end -%>

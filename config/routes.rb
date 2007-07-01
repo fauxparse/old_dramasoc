@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :venues
   map.resources :news, :singular => "post"
   map.resources :users
+  map.resources :members
   
   map.dramasoc 'dramasoc/:action', :controller => "dramasoc", :action => "home"
   map.home 'dramasoc', :controller => "dramasoc", :action => "home"
