@@ -1,5 +1,6 @@
 class Booking < ActiveRecord::Base
   belongs_to :performance, :include => :show
+  attr_accessor :terms_and_conditions
   
   validates_presence_of :name
   validates_presence_of :performance_id
@@ -11,6 +12,7 @@ class Booking < ActiveRecord::Base
       r.errors.add a, 'or unwaged must be at least 1'
     end
   end
+  validates_acceptance_of :terms_and_conditions
   
   def show
     performance.show

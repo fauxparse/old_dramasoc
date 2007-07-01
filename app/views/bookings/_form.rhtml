@@ -1,12 +1,48 @@
 <% fields_for :booking, @booking do |booking| -%>
-  <h2>Book now for <%= @show.name %>!</h2>
-  <%= error_messages_for "booking" %>
+  <%= error_messages_for "booking", :title => "Oops! There was a problem with your booking..." %>
   <ol class="form">
     <li class="text"><label for="booking_name">Your name:</label><%= booking.text_field :name, :class => "text" %></li>
     <li class="text"><label for="booking_phone">Your phone number:</label><%= booking.text_field :phone, :class => "text phone" %></li>
-    <li class="text"><label for="booking_phone">Your email address:</label><span class="field"><%= booking.text_field :email, :class => "text" %><br /><span class="field"><%= booking.check_box :notify_me %> Please contact me about upcoming shows and events</span></span></li>
+    <li class="text"><label for="booking_phone">Your email address:</label><%= booking.text_field :email, :class => "text" %><span class="field subsequent"><%= booking.check_box :notify_me %> Please contact me about upcoming shows and events</span></li>
     <li class="select"><label for="booking_performance_id">Performance:</label><%= booking.select :performance_id, @show.performances.collect { |p| [ p.strftime, p.id ] } %>
-    <li class="text"><label for="booking_waged">Number of tickets:</label><span class="field"><%= booking.text_field :waged, :class => "text number" %> waged and <%= booking.text_field :unwaged, :class => "text number" %> unwaged</span></li>
+    <li class="text"><label for="booking_waged">Number of tickets:</label><span class="field"><%= booking.text_field :waged, :class => "text number" %> waged (@<%= sprintf "$%.2f", @show.waged_price %>) and <%= booking.text_field :unwaged, :class => "text number" %> unwaged (@<%= sprintf "$%.2f", @show.unwaged_price %>)</span>
+      <span class="field subsequent">
+        <strong>Total:</strong> <span id="total_price" style="font-size: 150%"><%= sprintf "$%.2f", @booking.total_price %></span>, payable at the door (cash only).
+      </span>
+    </li>
     <li class="textarea"><label for="booking_comments">Any other comments:</label><%= booking.text_area :comments, :rows => 5 %></li>
+    <li class="checkbox">
+      <span class="field"><%= booking.check_box :terms_and_conditions %> I accept the <%= link_to_redbox "Terms and Conditions", "terms_and_conditions" %> of booking.</span>
+    </li>
   </ol>
 <% end -%>
+<script type="text/javascript">
+  var waged = <%= @show.waged_price || 0.0 %>;
+  var unwaged = <%= @show.unwaged_price || 0.0 %>;
+
+  function update_total() {
+    price = parseInt(Field.present('booking_waged') ? $F('booking_waged') : 0) * waged + parseInt(Field.present('booking_unwaged') ? $F('booking_unwaged') : 0) * unwaged;
+    dollars = Math.floor(price);
+    cents = (price - dollars) * 100;
+    cents = (cents == 0) ? '.00' : ((cents < 10) ? '.0' + cents : '.' + cents);
+    $('total_price').update('$' + dollars + cents);
+  }
+  
+  Event.observe('booking_waged', 'change', update_total);
+  Event.observe('booking_unwaged', 'change', update_total);
+</script>
+<div id="terms_and_conditions" style="display: none">
+  <h2>Terms and Conditions</h2>
+  <ul style="width: 600px">
+    <li>Because of the small house sizes at many of our performances, we ask that you
+      notify us at least 24 hours in advance if you are unable to attend the show.
+      We reserve the right to hold you liable for booked seating.</li>
+    <li>Please be on time! Tickets booked online will be held until 20 minutes
+      prior to the show opening. Tickets not picked up and paid for by
+      this time may be sold as door sales.</li>
+    <li>The information you supply will be retained for marketing purposes, but will
+      not be distributed to any third parties. You won't be contacted by us unless
+      you have requested further information.</li>
+  </ul>
+  <p><%= link_to_close_redbox "Close" %></p>
+</div>

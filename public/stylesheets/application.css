@@ -77,11 +77,30 @@ body.home a:hover {
   padding: 0.5ex 1em 0.5ex 128px;
 }
 
-#flash {
+#flash, #errors {
   margin-top: 16px;
   padding: 8px;
   background: #ffc;
   border: 1px solid #cc9;  
+}
+
+#errors h2 {
+  text-transform: none;
+  letter-spacing: normal;
+  margin: 0px;
+}
+
+#errors {
+  margin-bottom: 2ex;  
+}
+
+.fieldWithErrors {
+  display: inline;  
+}
+
+.fieldWithErrors input.text,
+.fieldWithErrors textarea {
+  background: #ffc;
 }
 
 #header {
@@ -390,9 +409,13 @@ ol.form li .field textarea {
   width: auto;
 }
 
+ol.form input.number {
+  width: 4em !important;
+}
+
 input.text:focus,
 textarea:focus {
-	background: #ffc;
+	/*background: #ffc;*/
 }
 
 #body ol.form li input.price {
