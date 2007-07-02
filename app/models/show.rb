@@ -12,6 +12,8 @@ class Show < ActiveRecord::Base
   has_many :performances, :order => "time ASC"
   has_many :bookings, :through => :performances
   belongs_to :venue
+  has_many :attachments, :as => :attachable, :order => "position ASC"
+  has_many :photos, :through => :attachments
 
   attr_accessor :auto_cutoff_enabled
   

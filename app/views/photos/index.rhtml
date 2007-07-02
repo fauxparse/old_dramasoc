@@ -1,0 +1,16 @@
+<h1>Listing photos</h1>
+
+<ul id="assets">
+<% @photos.each do |photo| %>
+<li id="<%= dom_id(photo) %>">
+<% if photo.image? %>
+<%= link_to(image_tag(photo.public_filename(:thumb))) %><br />
+<% end %>
+<%= link_to(photo.filename, photo_path(photo)) %> (<%= link_to "Delete", photo_path(photo), :method => :delete, :confirm => "Are you sure?"%>)
+</li>
+<% end %>
+</ul>
+
+<br />
+
+<%= link_to 'New photo', new_photo_path %>

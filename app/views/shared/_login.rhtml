@@ -18,6 +18,6 @@
         <%= link_to_function "Cancel", "Effect.toggle('login_bar_form', 'slide', { duration: 0.4 })" %>
       <% end -%>
     </div>
-    <%= link_to_function "Log in", "Effect.toggle('login_bar_form', 'slide', { duration: 0.4 }); $('login_field').focus();", :id => "login_toggle" %>
+    <%= link_to_function "Log in", "Effect.toggle('login_bar_form', 'slide', { duration: 0.4 }); $('login_field').activate();", :id => "login_toggle" %>
   <% end -%>
 </div>
