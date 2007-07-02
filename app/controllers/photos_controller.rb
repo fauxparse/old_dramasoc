@@ -62,9 +62,26 @@ public
         flash[:notice] = 'Photo was successfully uploaded.'
         format.html { redirect_to photo_url(@photo) }
         format.xml  { head :created, :location => photo_url(@photo) }
+        format.js do
+          responds_to_parent do
+            render :update do |page|
+              @photo.attachments :reload
+              @attachment = @photo.attachment_to @attachable unless @attachable.nil?
+              page.insert_html :bottom, "attachments", :partial => 'photos/attachment', :locals => { :attachment => @attachment }
+              page.visual_effect :highlight, dom_id(@attachment)
+            end
+          end          
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @photo.errors.to_xml }
+        format.js do
+          responds_to_parent do
+            render :update do |page|
+              # TODO: update the page with an error message
+            end
+          end          
+        end
       end
     end
   end
@@ -95,6 +112,17 @@ public
     respond_to do |format|
       format.html { redirect_to photos_url }
       format.xml  { head :ok }
+    end
+  end
+  
+  def reorder
+    unless @attachable.nil?
+      params[:attachments].each_with_index do |a, i|
+        Attachment.update a, :position => i + 1
+      end
+    end
+    respond_to do |wants|
+      wants.js { render :nothing => true }
     end
   end
 end

@@ -1,0 +1,3 @@
+<% content_tag :li, :id => dom_id(photo) do -%>
+  <%= link_to_unless((defined?(link) and link == false), image_tag(photo.public_filename(:thumb)), photo_path(photo)) %>
+<% end -%>

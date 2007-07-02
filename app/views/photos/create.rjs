@@ -1,0 +1,2 @@
+page.insert_html :bottom, "photos", :partial => 'photos/attachment', :object => @photo.attachment_to(@attachable), :locals => { :link => false }
+page.visual_effect :highlight, dom_id(@photo)
