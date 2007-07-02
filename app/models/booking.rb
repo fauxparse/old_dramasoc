@@ -15,7 +15,7 @@ class Booking < ActiveRecord::Base
   validates_acceptance_of :terms_and_conditions
   
   def show
-    performance.show
+    performance.nil? ? nil : performance.show
   end
 
   def waged_tickets
@@ -31,7 +31,7 @@ class Booking < ActiveRecord::Base
   end
   
   def total_price
-    waged_tickets.to_f * show.waged_price + unwaged_tickets.to_f * show.unwaged_price
+    show.nil? ? 0 : (waged_tickets.to_f * show.waged_price + unwaged_tickets.to_f * show.unwaged_price)
   end
   
   def tickets
