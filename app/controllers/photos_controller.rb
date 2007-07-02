@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
   
 protected
   def get_attachable
-    request_path = request.env['REQUEST_PATH']
+    request_path = request.request_uri
     object_type = request_path.sub(/^\//, '').split('/').shift.singularize
     @attachable = case object_type
     when 'photo' then nil
