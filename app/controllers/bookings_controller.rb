@@ -32,7 +32,7 @@ public
   end
 
   def new
-    @booking = Booking.new params[:booking]
+    @booking = Booking.new { :performance => @show.next_performance }.merge params[:booking]
   end
 
   def create
