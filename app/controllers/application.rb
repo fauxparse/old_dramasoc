@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :login_from_cookie
   around_filter :catch_errors
+  
+  def live?
+    request.domain =~ /^(www\.)?dramasoc\.org/ ? true : false
+  end
 
 protected
   def catch_errors
