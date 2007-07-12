@@ -1,0 +1,7 @@
+<%= error_messages_for "post" %>
+<ol class="form">
+  <li class="text"><label for="post_title">Title:</label><%= form.text_field :title, :class => "text" %></li>
+  <li class="text-area"><label for="post_body">Body:</label><%= form.text_area :body, :rows => 15 %></li>
+  <li class="text-area"><label for="post_more">Body (cont'd):</label><%= form.text_area :more, :rows => 10 %></li>
+  <li class="date"><label for="post_created_at">Date:</label><span class="field"><%= form.datetime_select :created_at %></span></li>
+</ol>
