@@ -4,7 +4,7 @@ class NewsController < ApplicationController
 
 protected
   def get_post
-    @post = Post.find(params[:id]) or raise ActiveRecord::RecordNotFound
+    @post = Post.find_by_permalink(params[:id]) or raise ActiveRecord::RecordNotFound
   end
 
 public
@@ -20,6 +20,13 @@ public
   end
 
   def create
+    @post = current_user.posts.create params[:post]
+    if @post.valid?
+      flash[:notice] = "News posted successfully"
+      redirect_to news_path
+    else
+      render :action => :new
+    end
   end
 
   def edit

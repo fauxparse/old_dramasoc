@@ -1,2 +1,5 @@
-<h1>News#new</h1>
-<p>Find me in app/views/news/new.rhtml</p>
+<h1>New News is Good News</h1>
+<% form_for :post, Post.new, :url => news_path, :method => :post do |form| -%>
+  <%= render :partial => "form", :object => form %>
+  <%= submit_tag "Post" %>
+<% end -%>

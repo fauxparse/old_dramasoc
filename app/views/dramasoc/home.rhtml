@@ -7,6 +7,7 @@
         <p><%= link_to "More news", "#", :class => "read-more" %></p>
       <% else -%>
         <%= render :partial => "news/post", :collection => @news %>
+        <p><%= link_to "More news", news_path, :class => "read-more" %></p>
       <% end -%>
     </div>
   </div>

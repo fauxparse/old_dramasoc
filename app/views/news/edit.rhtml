@@ -1,2 +1,5 @@
-<h1>News#edit</h1>
-<p>Find me in app/views/news/edit.rhtml</p>
+<h1>Editing News Post</h1>
+<% form_for :post, @post, :url => news_path, :method => :post do |form| -%>
+  <%= render :partial => "form", :object => form %>
+  <%= submit_tag "Save Changes" %>
+<% end -%>
