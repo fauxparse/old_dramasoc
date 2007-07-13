@@ -11,7 +11,7 @@ protected
   
 public
   
-  has_attachment :storage => :file_system, :max_size => 1.megabytes, :thumbnails => { :thumb => '80x80>', :tiny => '40x40>' }, :processor => processor, :resize_to => '600x600>', :content_type => :image
+  has_attachment :storage => :file_system, :max_size => 1.megabytes, :thumbnails => { :thumb => '80x80>', :tiny => '40x40>', :sidebar => '200x200>' }, :processor => processor, :resize_to => '600x600>', :content_type => :image
   
   validates_as_attachment
   

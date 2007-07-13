@@ -67,8 +67,9 @@ public
             render :update do |page|
               @photo.attachments :reload
               @attachment = @photo.attachment_to @attachable unless @attachable.nil?
-              page.insert_html :bottom, "attachments", :partial => 'photos/attachment', :locals => { :attachment => @attachment }
+              page.insert_html :bottom, "attachments", :partial => 'photos/attachment', :locals => { :attachment => @attachment, :link => false }
               page.visual_effect :highlight, dom_id(@attachment)
+              page.sortable "attachments", :constraint => :horizontal, :url => formatted_show_reorder_photos_path(@show, :js), :method => :put
             end
           end          
         end

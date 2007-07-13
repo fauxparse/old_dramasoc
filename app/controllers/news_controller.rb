@@ -33,6 +33,12 @@ public
   end
 
   def update
+    if @post.update_attributes params[:post]
+      flash[:notice] = "News posted successfully"
+      redirect_to post_path(@post)
+    else
+      render :action => :edit
+    end
   end
 
   def destroy
