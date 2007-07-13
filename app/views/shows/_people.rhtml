@@ -3,7 +3,11 @@
     <% curr = nil -%>
     <% people.each do |role| -%>
       <%= content_tag :dt, (curr = role.role) unless role.role == curr %>
-      <dd><%= link_to role.member.name, member_path(role.member) %></dd>
+      <% if role.member.nil? -%>
+        <dd>(not cast yet)</dd>
+      <% else -%>
+        <dd><%= link_to role.member.name, member_path(role.member) %></dd>
+      <% end -%>
     <% end -%>
   <% end -%>
 <% end -%>
