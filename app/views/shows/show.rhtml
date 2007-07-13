@@ -1,6 +1,7 @@
 <% @page_title = @show.name_and_date %>
 <div class="show-title">
   <h1><%= @show %></h1>
+  <%= content_tag(:div, "Part of <cite><a href=\"#{show_path(@show.parent)}/\">#{@show.parent}</a></cite>", :class => "show-parent") unless @show.parent.nil? %>
   <%= content_tag(:div, "By #{@show.author}", :class => "show-author") unless @show.author.blank? %>
   <%= content_tag(:div, @show.performance_dates_as_string, :class => "show-dates") unless @show.performances.empty? %>
   <%= content_tag(:div, @show.venue, :class => "show-venue") unless @show.venue.nil? %>
