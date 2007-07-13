@@ -14,6 +14,8 @@ class Show < ActiveRecord::Base
   belongs_to :venue
   has_many :attachments, :as => :attachable, :order => "position ASC"
   has_many :photos, :through => :attachments
+  
+  acts_as_tree :order => :position
 
   attr_accessor :auto_cutoff_enabled
   

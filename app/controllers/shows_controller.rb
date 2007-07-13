@@ -14,7 +14,7 @@ protected
 
 public
   def index
-    @shows = Show.find :all, :order => "year DESC, month DESC"
+    @shows = Show.find :all, :order => "year DESC, month DESC", :condition => "parent_id IS NULL"
   end
 
   def show

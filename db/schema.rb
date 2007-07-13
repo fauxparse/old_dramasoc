@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "attachments", :force => true do |t|
     t.column "attachable_id",   :integer
@@ -95,22 +95,25 @@ ActiveRecord::Schema.define(:version => 18) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "shows", :force => true do |t|
-    t.column "name",          :string,                                              :default => "",    :null => false
-    t.column "permalink",     :string,                                              :default => "",    :null => false
-    t.column "year",          :integer
-    t.column "month",         :integer
-    t.column "description",   :text
-    t.column "is_current",    :boolean
-    t.column "splash_page",   :text
-    t.column "created_at",    :datetime
-    t.column "updated_at",    :datetime
-    t.column "waged_price",   :integer,  :limit => 2, :precision => 2, :scale => 0
-    t.column "unwaged_price", :integer,  :limit => 2, :precision => 2, :scale => 0
-    t.column "venue_id",      :integer
-    t.column "author",        :string
-    t.column "bookings_open", :boolean,                                             :default => false
-    t.column "booking_email", :string
-    t.column "auto_cutoff",   :integer,                                             :default => 3
+    t.column "name",           :string,                                              :default => "",    :null => false
+    t.column "permalink",      :string,                                              :default => "",    :null => false
+    t.column "year",           :integer
+    t.column "month",          :integer
+    t.column "description",    :text
+    t.column "is_current",     :boolean
+    t.column "splash_page",    :text
+    t.column "created_at",     :datetime
+    t.column "updated_at",     :datetime
+    t.column "waged_price",    :integer,  :limit => 2, :precision => 2, :scale => 0
+    t.column "unwaged_price",  :integer,  :limit => 2, :precision => 2, :scale => 0
+    t.column "venue_id",       :integer
+    t.column "author",         :string
+    t.column "bookings_open",  :boolean,                                             :default => false
+    t.column "booking_email",  :string
+    t.column "auto_cutoff",    :integer,                                             :default => 3
+    t.column "parent_id",      :integer
+    t.column "position",       :integer,                                             :default => 1
+    t.column "children_count", :integer,                                             :default => 0
   end
 
   add_index "shows", ["venue_id"], :name => "fk_venue_id"
