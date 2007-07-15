@@ -654,6 +654,7 @@ table.bookings tfoot td {
   margin: 16px 0px 0px;
   padding: 0px 0px 40px;
   font-size: 85%;
+  color: #999;
 }
 
 #footer-inner {
@@ -665,6 +666,7 @@ table.bookings tfoot td {
 
 body.home #footer-inner {
   border-top-color: white;
+  color: white;
 }
 
 #footer p {
