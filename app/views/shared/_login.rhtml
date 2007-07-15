@@ -11,8 +11,8 @@
   <% else -%>
     <div id="login_bar_form" style="display: none">
       <% form_tag session_path, :method => :post do -%>
-        Login: <%= text_field_tag 'login', {}, :id => "login_field" %>
-        Password: <%= password_field_tag 'password' %>
+        Login: <%= text_field_tag 'login', {}, :id => "login_field", :class => "text" %>
+        Password: <%= password_field_tag 'password', {}, :class => "text" %>
         <%= check_box_tag 'remember_me' %> Remember me
         <%= submit_tag 'Log in' %>
         <%= link_to_function "Cancel", "Effect.toggle('login_bar_form', 'slide', { duration: 0.4 })" %>

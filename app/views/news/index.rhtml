@@ -11,9 +11,10 @@
   <div id="sidebar">
     <div id="sidebar-inner">
       <% if logged_in? -%>
+        <h2>News</h2>
         <ul class="tasks">
-          <li><%= link_to "New News Item", new_post_path, :class => "action new-news" %></li>
-         </ul>
+          <li><%= link_to "New News Item", new_post_path, :class => "action news add" %></li>
+        </ul>
       <% end -%>
     </div>
   </div>

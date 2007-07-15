@@ -41,9 +41,12 @@
       
       <% if logged_in? -%>
         <% content_tag :div, :class => 'box', :id => 'show_tasks' do -%>
+          <h2>This Show</h2>
           <ul class="tasks">
-            <li><%= link_to "Edit Details", edit_show_path(@show), :class => "action edit-show" %></li>
-            <li><%= link_to "Show Bookings", show_bookings_path(@show), :class => "action show-bookings" %></li>
+            <li><%= link_to "Edit Details", edit_show_path(@show), :class => "action show edit" %></li>
+            <% if !@show.performances.empty? -%>
+              <li><%= link_to "Show Bookings", show_bookings_path(@show), :class => "action booking" %></li>
+            <% end -%>
           </ul>
         <% end -%>
       <% end -%>

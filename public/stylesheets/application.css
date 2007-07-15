@@ -77,6 +77,10 @@ body.home a:hover {
   padding: 0.5ex 1em 0.5ex 128px;
 }
 
+#login_bar input.text {
+  width: 8em;
+}
+
 #flash, #errors {
   margin-top: 16px;
   padding: 8px;
@@ -213,8 +217,9 @@ body.home #body #flash {
 }
 
 h2 {
-  margin: 2ex 0px 0ex;
-  font-size: 200%;
+  margin: 0ex 0px 0ex;
+  padding: 2ex 0px 0px;
+  font-size: 150%;
   text-transform: uppercase;
   font-weight: normal;
   letter-spacing: 0.2em;  
@@ -243,7 +248,7 @@ p {
 }
 
 #coming-events h2 {
-  font-size: 150%;
+  font-size: 120%;
   margin-top: 2.66ex;
   padding-top: 0.66ex;
 }
@@ -257,11 +262,11 @@ p {
   color: #999;
 }
 
-.show-title h1 {
-  font-size: 300%;
+h1 {
+  font-size: 250%;
   font-weight: normal;
   color: #0072bc;
-  margin: 2ex 0px 0px;
+  margin: 2ex 0px 0.5ex;
   line-height: normal;
 }
 
@@ -308,6 +313,42 @@ p {
 #show_tasks {
   border-bottom: 1px dotted #ccc;
 }
+
+ul.tasks {
+  margin: 0px 0px 2ex;
+  padding: 0px;
+}
+
+ul.tasks li {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: block;
+}
+
+ul.tasks li a {
+  display: block;
+  padding: 0px 0px 0px 24px;
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+  line-height: 1.8;
+  border-bottom: none;
+}
+
+#container ul.tasks li a:hover {
+  background-color: #ec008c;
+  color: white;
+  border: none;
+}
+
+ul.tasks li a.booking { background-image: url(/images/booking.png); }
+ul.tasks li a.show.edit { background-image: url(/images/show-edit.png); }
+ul.tasks li a.show.add { background-image: url(/images/show-add.png); }
+ul.tasks li a.show.delete { background-image: url(/images/show-delete.png); }
+ul.tasks li a.news { background-image: url(/images/news.png); }
+ul.tasks li a.news.edit { background-image: url(/images/news-edit.png); }
+ul.tasks li a.news.add { background-image: url(/images/news-add.png); }
+ul.tasks li a.news.delete { background-image: url(/images/news-delete.png); }
 
 .fieldset-tabs {
   margin: 0px;
@@ -576,4 +617,30 @@ dl.people dd {
 #show_crew {
   border-top: 1px dotted #ccc;
   padding-top: 2ex;
+}
+
+.post-footer {
+  font-size: 85%;
+  color: #999;
+}
+
+#footer {
+  margin: 16px 0px 0px;
+  padding: 0px 0px 40px;
+  font-size: 85%;
+}
+
+#footer-inner {
+  border-top: 1px dotted #ccc;
+  padding-top: 2ex;
+  width: 664px;
+  margin-left: 120px;
+}
+
+body.home #footer-inner {
+  border-top-color: white;
+}
+
+#footer p {
+  margin: 0px 8px 2ex;
 }

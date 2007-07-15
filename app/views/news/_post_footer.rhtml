@@ -1,0 +1,4 @@
+  <div class="post-footer">
+    <p>Posted by <%= link_to post.user, member_path(post.user), :class => "member" %> at <%= post.created_at.strftime "%l:%M%p, %A, %e %B, %Y" %></p>
+    <%= content_tag(:ul, content_tag(:li, link_to("Edit this post", edit_post_path(post), :class => "action news edit")), :class => "tasks") if logged_in?%>
+  </div>
