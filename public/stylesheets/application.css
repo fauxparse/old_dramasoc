@@ -624,6 +624,32 @@ dl.people dd {
   color: #999;
 }
 
+table.bookings {
+  margin: 0px 0px 2ex;  
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+table.bookings th,
+table.bookings td {
+  padding: 0.5ex 1em;
+  border-top: 1px dotted #ccc;
+  border-bottom: 1px dotted #ccc;
+  text-align: left;
+}
+
+table.bookings td {
+  text-align: right;
+}
+
+table.bookings thead th,
+table.bookings tfoot th,
+table.bookings tfoot td {
+  font-weight: bold;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+
 #footer {
   margin: 16px 0px 0px;
   padding: 0px 0px 40px;
