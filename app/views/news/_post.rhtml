@@ -2,5 +2,5 @@
   <h2><%= link_to post.title || "New news is good news...", post_path(post) %></h2>
   <%= content_tag :div, bc(post.body), :class => "post-body" %>
   <%= content_tag :p, link_to("Read more", post_path(post), :class => "read-more") unless post.more.blank? %>
-  <%= render :partial => 'post_footer', :locals => { :post => post } %>
+  <%= render :partial => 'news/post_footer', :locals => { :post => post } %>
 <% end -%>
