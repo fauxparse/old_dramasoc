@@ -4,7 +4,7 @@
     <li class="text"><label for="booking_name">Your name:</label><%= booking.text_field :name, :class => "text" %></li>
     <li class="text"><label for="booking_phone">Your phone number:</label><%= booking.text_field :phone, :class => "text phone" %></li>
     <li class="text"><label for="booking_phone">Your email address:</label><%= booking.text_field :email, :class => "text" %><span class="field subsequent"><%= booking.check_box :notify_me %> Please contact me about upcoming shows and events</span></li>
-    <li class="select"><label for="booking_performance_id">Performance:</label><%= booking.select :performance_id, @show.performances.collect { |p| [ p.strftime, p.id ] } %>
+    <li class="select"><label for="booking_performance_id">Performance:</label><%= booking.select :performance_id, @show.performances.select(&:bookings_open?).collect { |p| [ p.strftime, p.id ] } %>
     <li class="text"><label for="booking_waged">Number of tickets:</label><span class="field"><%= booking.text_field :waged, :class => "text number" %> waged (@<%= sprintf "$%.2f", @show.waged_price %>) and <%= booking.text_field :unwaged, :class => "text number" %> unwaged (@<%= sprintf "$%.2f", @show.unwaged_price %>)</span>
       <span class="field subsequent">
         <strong>Total:</strong> <span id="total_price" style="font-size: 150%"><%= sprintf "$%.2f", @booking.total_price %></span>, payable at the door (cash only).
