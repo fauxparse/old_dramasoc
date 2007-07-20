@@ -1,0 +1,8 @@
+<div class="show-title">
+  <h1><%= @review %></h1>
+  <%= content_tag(:div, "<cite>#{@show}</cite>. Reviewed by #{@review.reviewer} for #{@review.publication}, #{@review.date.to_s(:long)}", :class => "show-author") unless @show.author.blank? %>
+</div>
+<%= bc @review.body %>
+<%= bc @review.more if !@review.more.blank? %>
+
+<p><%= link_to "Back to <cite>#{@show}</cite>", show_path(@show) %></p>

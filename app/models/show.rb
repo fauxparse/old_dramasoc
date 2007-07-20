@@ -14,6 +14,7 @@ class Show < ActiveRecord::Base
   belongs_to :venue
   has_many :attachments, :as => :attachable, :order => "position ASC"
   has_many :photos, :through => :attachments
+  has_many :reviews, :order => "reviews.date DESC"
   
   acts_as_tree :order => :position
 

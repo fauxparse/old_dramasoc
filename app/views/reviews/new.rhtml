@@ -1,0 +1,5 @@
+<h1>New review for <cite><%= @show %></cite></h1>
+<% form_for :review, @review, :url => show_reviews_path(@show), :html => { :method => :post } do |form| -%>
+  <%= render :partial => "form", :locals => { :form => form } %>
+  <%= submit_tag "Create" %>
+<% end -%>

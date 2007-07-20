@@ -314,6 +314,23 @@ h1 {
   border-bottom: 1px dotted #ccc;
 }
 
+#show_reviews {
+  border-bottom: 1px dotted #ccc;
+}
+
+#show_reviews ul {
+  margin: 0px 0px 2ex;
+  padding: 0px;
+}
+
+#show_reviews ul li {
+  margin: 0px;
+  padding: 0px 0px 0px 24px;
+  list-style: none;
+  display: block;
+  background: url(/images/news.png) no-repeat 2px 2px;
+}
+
 ul.tasks {
   margin: 0px 0px 2ex;
   padding: 0px;

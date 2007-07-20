@@ -1,0 +1,5 @@
+<h1>Edit review</h1>
+<% form_for :review, @review, :url => show_review_path(@show, @review), :html => { :method => :put } do |form| -%>
+  <%= render :partial => "form", :locals => { :form => form } %>
+  <%= submit_tag "Save" %>
+<% end -%>

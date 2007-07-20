@@ -1,0 +1,9 @@
+<ol class="form">
+  <li class="text"><label for="review_title">Title:</label><%= form.text_field :title, :class => "text" %></li>
+  <li class="text"><label for="review_reviewer">Reviewed By:</label><%= form.text_field :reviewer, :class => "text" %></li>
+  <li class="text"><label for="review_publication">Publication:</label><%= form.text_field :publication, :class => "text" %></li>
+  <li class="date"><label for="review_date">Date:</label><span class="field"><%= form.date_select :date, :order => [:day, :month, :year] %></span></li>
+  <li class="text"><label for="review_body">Body:</label><%= form.text_area :body, :rows => 15 %></li>
+  <li class="text"><label for="review_more">More:</label><%= form.text_area :more, :rows => 15 %></li>
+  <li class="text"><label for="review_pullquote">Pull Quote:</label><%= form.text_area :pullquote, :rows => 5 %></li>
+</ol>

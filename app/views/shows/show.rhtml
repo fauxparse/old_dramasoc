@@ -39,6 +39,17 @@
         <% end -%>
       <% end -%>
       
+      <% if !@show.reviews.empty? -%>
+        <% content_tag :div, :class => 'box', :id => 'show_reviews' do -%>
+          <h2>Reviews</h2>
+          <ul>
+            <% @show.reviews.each do |review| -%>
+              <li><strong><%= link_to review, show_review_path(@show, review) %></strong><br /><%= "#{review.reviewer} for #{review.publication}, #{review.date.to_s(:long)}" %></li>
+            <% end -%>
+          </ul>
+        <% end -%>
+      <% end -%>
+      
       <% if logged_in? -%>
         <% content_tag :div, :class => 'box', :id => 'show_tasks' do -%>
           <h2>This Show</h2>

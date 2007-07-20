@@ -1,0 +1,15 @@
+<h1>Reviews for <cite><%= @show %></cite></h1>
+
+<% if !@reviews.empty? -%>
+  <ul>
+    <% @reviews.each do |review| -%>
+      <li><%= link_to review, show_review_path(@show, review) %><br /><%= "#{@review.reviewer} for #{@review.publication}, #{@review.date.to_s(:long)}" %></li>
+    <% end -%>
+  </ul>
+<% else -%>
+  <p>There are currently no reviews for <cite><%= @show %></cite></p>
+<% end -%>
+
+<p><%= link_to "New review", show_new_review_path(@show) unless !logged_in? %></p>
+
+<p><%= link_to "Back to <cite>#{@show}</cite>", show_path(@show) %></p>
