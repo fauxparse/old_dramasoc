@@ -3,7 +3,7 @@
 <% if !@reviews.empty? -%>
   <ul>
     <% @reviews.each do |review| -%>
-      <li><%= link_to review, show_review_path(@show, review) %><br /><%= "#{@review.reviewer} for #{@review.publication}, #{@review.date.to_s(:long)}" %></li>
+      <li><%= link_to review, show_review_path(@show, review) %><br /><%= "#{review.reviewer} for #{review.publication}, #{review.date.to_s(:long)}" %></li>
     <% end -%>
   </ul>
 <% else -%>
