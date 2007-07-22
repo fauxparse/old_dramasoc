@@ -12,7 +12,7 @@ A booking for <%= @booking.show %> has been placed as follows:
     The President has been sent an email accordingly.
 <% end -%>
     
-<% if !@booking.comments -%>
+<% if !@booking.comments.blank? -%>
     OTHER COMMENTS
     <%= @booking.comments %>
 <% end -%>
