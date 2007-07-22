@@ -40,7 +40,7 @@ class Show < ActiveRecord::Base
   end
   
   def bookings_open?
-    bookings_open and !performances.empty? and performances.last.date >= Date.today and !booking_email.blank?
+    bookings_open and !performances.empty? and !(performances.select(&:bookings_open)).empty? and performances.last.date >= Date.today and !booking_email.blank?
   end
   
   def auto_cutoff_enabled
