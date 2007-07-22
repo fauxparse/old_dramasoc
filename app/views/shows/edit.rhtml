@@ -1,4 +1,4 @@
-<h1>Edit show: <%= Show.to_s %></h1>
+<h1>Edit show: <%= @show.to_s %></h1>
 
 <% @default_tab ||= :basic %>
 <% tabs = [ [ :basic, "Basic Information" ], [ :bookings, "Bookings" ], [ :venue, "Venue" ], [ :roles, "Cast and Crew" ], [ :photos, "Photos" ], [ :splash, "Splash" ] ] -%>
