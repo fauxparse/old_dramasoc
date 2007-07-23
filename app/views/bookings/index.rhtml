@@ -7,7 +7,7 @@
     <% @show.performances.each do |p| -%>
       <% pb = @bookings.select { |b| b.performance == p } %>
       <tr>
-        <th><%= p.strftime "%A, %e %B" %></th>
+        <th><%= link_to p.strftime("%A, %e %B"), show_list_bookings_path(@show) + "?performance_id=#{p.id}" %></th>
         <td><%= pb.collect(&:waged_tickets).sum %></td>
         <td><%= pb.collect(&:unwaged_tickets).sum %></td>
         <td><%= pb.collect(&:total_tickets).sum %></td>

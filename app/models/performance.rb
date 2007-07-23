@@ -7,6 +7,8 @@ class Performance < ActiveRecord::Base
     time <=> another.time
   end
   
+  def to_s; strftime; end
+  
   def date
     time.to_date
   end

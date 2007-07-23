@@ -35,6 +35,6 @@ class Booking < ActiveRecord::Base
   end
   
   def tickets
-    [ :waged, :unwaged ].collect { |w| (t = send(w)).zero? ? nil : ("#{t} #{w} " + (t == 1 ? "ticket" : "tickets")) }.compact.join(' and ')
+    [ :waged, :unwaged ].collect { |w| (t = send("#{w}_tickets")).zero? ? nil : ("#{t} #{w} " + (t == 1 ? "ticket" : "tickets")) }.compact.join(' and ')
   end
 end

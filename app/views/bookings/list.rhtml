@@ -1,0 +1,12 @@
+<% if @performance -%>
+  <h1><%= @performance %></h1>
+  <ul>
+    <% @performance.bookings.each do |b| -%>
+      <li><strong><%= b.name %>:</strong> <%= b.tickets %><%= "<br />#{b.email}" unless b.email.blank? %><%= "<br />#{b.phone}" unless b.phone.blank? %><%= "<br />\"#{b.comments}\"" unless b.comments.blank? %></li>
+    <% end -%>
+  </ul>
+<% else -%>
+  <ul>
+    <%= @performances.collect { |p| content_tag :li, link_to(p.to_s, "?performance_id=#{p.id}") } %>
+  </ul>
+<% end %>

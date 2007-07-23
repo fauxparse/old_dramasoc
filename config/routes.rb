@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :shows, :collection => { :current => :get } do |show|
     show.resources :performances, :name_prefix => "show_", :member => { :open => :put }
-    show.resources :bookings, :name_prefix => "show_"
+    show.resources :bookings, :name_prefix => "show_", :collection => { :list => :get }
     show.resources :roles, :name_prefix => "show_", :collection => { :reorder => :put }
     show.resources :photos, :name_prefix => "show_", :collection => { :reorder => :put }
     show.resources :reviews, :name_prefix => "show_"
