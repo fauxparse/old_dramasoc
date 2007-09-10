@@ -42,7 +42,8 @@ protected
   # Delete associated members if they're not in any shows and
   # don't need to log in to the system.
   def delete_unused_members
-    if !member.is_a?(User) and member.roles(:true).empty?
+    if !member.nil? && !member.is_a?(User) and 
+member.roles(:true).empty?
       member.destroy
     end
   end
